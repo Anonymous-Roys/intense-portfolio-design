@@ -89,7 +89,7 @@ const Hero = () => {
             <div className="w-full h-full rounded-full overflow-hidden border-4 border-portfolio-blue relative z-10">
               {/* Replace with actual image when available */}
               <div className="w-full h-full bg-gradient-to-b from-portfolio-blue to-portfolio-purple flex items-center justify-center text-white text-4xl font-bold">
-                ADK
+                <img src="/profile.jpg" alt="" />
               </div>
             </div>
             <div className="absolute top-0 left-0 w-full h-full rounded-full bg-portfolio-purple opacity-20 blur-xl -z-10"></div>
