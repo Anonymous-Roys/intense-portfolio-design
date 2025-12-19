@@ -10,6 +10,7 @@ import Experience from '@/components/Experience';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
+
 const Index = () => {
   // Implement scroll animation for elements with .animate-on-scroll class
   useEffect(() => {
@@ -48,6 +49,7 @@ const Index = () => {
       <Experience />
       <Contact />
       <Footer />
+
     </motion.div>
   );
 };
