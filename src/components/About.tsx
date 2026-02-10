@@ -35,20 +35,32 @@ const About = () => {
             viewport={{ once: true }}
             custom={0}
             variants={fadeInUpVariants}
+            className="flex flex-col gap-6"
           >
-            <h3 className="text-xl font-semibold mb-4 text-portfolio-blue">Who I am</h3>
-            <p className="text-portfolio-light/80 mb-4">
-              I'm a passionate fullstack developer with 3-4 years of experience in building web and mobile applications.
-              My focus areas are JavaScript technologies, cloud infrastructure, and creating performant, accessible user experiences.
-            </p>
-            <p className="text-portfolio-light/80 mb-4">
-              Currently pursuing a BSc. in Computer Science & Engineering at the University of Mines and Technology, Tarkwa, Ghana.
-              I'm expected to graduate in October 2026.
-            </p>
-            <p className="text-portfolio-light/80">
-              Beyond coding, I enjoy mentoring other developers, contributing to open source projects, and exploring new technologies
-              to enhance my development toolkit.
-            </p>
+            <div className="relative w-full max-w-md mx-auto">
+              <img 
+                src="/me.jpg" 
+                alt="Arhin David Kwabena" 
+                className="w-full rounded-lg shadow-2xl"
+                loading="lazy"
+              />
+              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-portfolio-blue opacity-20 rounded-full blur-2xl"></div>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-4 text-portfolio-blue">Who I am</h3>
+              <p className="text-portfolio-light/80 mb-4">
+                I'm a passionate fullstack developer with 3-4 years of experience in building web and mobile applications.
+                My focus areas are JavaScript technologies, cloud infrastructure, and creating performant, accessible user experiences.
+              </p>
+              <p className="text-portfolio-light/80 mb-4">
+                Currently pursuing a BSc. in Computer Science & Engineering at the University of Mines and Technology, Tarkwa, Ghana.
+                I'm expected to graduate in October 2026.
+              </p>
+              <p className="text-portfolio-light/80">
+                Beyond coding, I enjoy mentoring other developers, contributing to open source projects, and exploring new technologies
+                to enhance my development toolkit.
+              </p>
+            </div>
           </motion.div>
           
           <div className="space-y-8">

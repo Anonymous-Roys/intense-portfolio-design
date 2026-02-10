@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 
 const Hero = () => {
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-center relative pt-20">
+    <section id="home" className="min-h-screen flex flex-col justify-center relative pt-20" itemScope itemType="https://schema.org/Person">
       <div className="container mx-auto px-4 py-10 md:py-20 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -29,7 +29,7 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Arhin David Kwabena
+              <span itemProp="name">Arhin David Kwabena</span>
             </motion.h1>
             
             <motion.h2 
@@ -38,7 +38,7 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Fullstack Developer | Cloud Practitioner | Tech Mentor
+              <span itemProp="jobTitle">Fullstack Developer | Cloud Practitioner | Tech Mentor</span>
             </motion.h2>
             
             <motion.p 
@@ -67,6 +67,12 @@ const Hero = () => {
               <Button 
                 variant="outline" 
                 className="bg-transparent border border-portfolio-blue text-portfolio-blue hover:bg-portfolio-blue/10 transition-colors"
+                onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = '/Software_engineer.pdf';
+                  link.download = 'Arhin_David_Kwabena_CV.pdf';
+                  link.click();
+                }}
               >
                 Download My CV
               </Button>
@@ -86,11 +92,13 @@ const Hero = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <div className="w-full h-full rounded-full overflow-hidden border-4 border-portfolio-blue relative z-10">
-              {/* Replace with actual image when available */}
-              <div className="w-full h-full bg-gradient-to-b from-portfolio-blue to-portfolio-purple flex items-center justify-center text-white text-4xl font-bold">
-                <img src="/profile.jpg" alt="" />
-              </div>
+              <div className="w-full h-full rounded-full overflow-hidden border-4 border-portfolio-blue relative z-10">
+              <img 
+                src="/profile.jpeg" 
+                alt="Arhin David Kwabena - Fullstack Developer" 
+                className="w-full h-full object-cover" 
+                loading="eager"
+              />
             </div>
             <div className="absolute top-0 left-0 w-full h-full rounded-full bg-portfolio-purple opacity-20 blur-xl -z-10"></div>
           </motion.div>

@@ -43,18 +43,23 @@ const Contact = () => {
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     
-    // Simulating form submission
     try {
-      // In a real scenario, you would send this data to a backend
-      console.log('Form data:', data);
+      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
       
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      toast.success('Message sent successfully! I will get back to you soon.');
-      form.reset();
+      if (response.ok) {
+        toast.success('Message sent successfully! I will get back to you soon.');
+        form.reset();
+      } else {
+        throw new Error('Failed to send message');
+      }
     } catch (error) {
-      toast.error('Failed to send message. Please try again.');
+      toast.error('Failed to send message. Please email me directly at davidarhin2005@gmail.com');
       console.error('Form submission error:', error);
     } finally {
       setIsSubmitting(false);

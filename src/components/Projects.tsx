@@ -13,7 +13,7 @@ const projectsData = [
     image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
     tags: ["React.js", "Node.js", "MySQL", "Featured"],
     liveLink: "https://ideationaxis.com/",
-    githubRepo: "#",
+    githubRepo: "https://github.com/Anonymous-Roys/Ideation-axis",
     isFeatured: true
   },
   {
@@ -23,7 +23,7 @@ const projectsData = [
     image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
     tags: ["React.js", "Node.js", "MongoDB", "Featured"],
     liveLink: "https://smagritrade.vercel.app/",
-    githubRepo: "#",
+    githubRepo: "https://github.com/Anonymous-Roys/Smagritrade",
     isFeatured: true
   },
   {
@@ -32,8 +32,8 @@ const projectsData = [
     description: "Secure, full-fledged e-commerce platform with integrated authentication & authorization.",
     image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
     tags: ["Next.js", "Prisma", "MongoDB", "Featured"],
-    liveLink: "",
-    githubRepo: "#",
+    liveLink: "https://ecommercex-rho.vercel.app/",
+    githubRepo: "https://github.com/Anonymous-Roys/ECommerceX",
     isFeatured: true
   },
   {
@@ -43,7 +43,7 @@ const projectsData = [
     image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
     tags: ["AWS Lambda", "SES", "CloudWatch", "Featured"],
     liveLink: "",
-    githubRepo: "#",
+    githubRepo: "https://github.com/Anonymous-Roys/AWS-Scheduled-Email-Cronjob",
     isFeatured: true
   },
   {
@@ -53,7 +53,7 @@ const projectsData = [
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
     tags: ["AWS ECS", "Docker", "ELB", "Featured"],
     liveLink: "",
-    githubRepo: "#",
+    githubRepo: "https://github.com/Anonymous-Roys/Containerized-App-Deployment",
     isFeatured: true
   },
   {
@@ -63,7 +63,7 @@ const projectsData = [
     image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
     tags: ["React.js", "MongoDB", "Node.js", "Featured"],
     liveLink: "",
-    githubRepo: "#",
+    githubRepo: "https://github.com/Anonymous-Roys/Printing-App-Management",
     isFeatured: true
   },
   {
@@ -73,7 +73,7 @@ const projectsData = [
     image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
     tags: ["Next.js", "PostgreSQL", "NextAuth.js", "Zod"],
     liveLink: "",
-    githubRepo: "#",
+    githubRepo: "https://github.com/Anonymous-Roys/Banking-Dashboard",
     isFeatured: false
   },
   {
@@ -83,7 +83,7 @@ const projectsData = [
     image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
     tags: ["React", "Tailwind CSS"],
     liveLink: "",
-    githubRepo: "#",
+    githubRepo: "https://github.com/Anonymous-Roys/Educ8Africa-Job-Showcase",
     isFeatured: false
   },
   {
@@ -93,7 +93,7 @@ const projectsData = [
     image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
     tags: ["Django", "JavaScript", "HTML", "CSS"],
     liveLink: "",
-    githubRepo: "#",
+    githubRepo: "https://github.com/Anonymous-Roys/Fullstack-E-commerce-App",
     isFeatured: false
   },
   {
@@ -103,7 +103,7 @@ const projectsData = [
     image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
     tags: ["React", "Django", "MySQL"],
     liveLink: "",
-    githubRepo: "#",
+    githubRepo: "https://github.com/Anonymous-Roys/CropCircle-Open-Source-Project",
     isFeatured: false
   }
 ];
@@ -183,6 +183,7 @@ const Projects = () => {
                     src={project.image} 
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                    loading="lazy"
                   />
                   <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-portfolio-dark to-transparent opacity-80"></div>
                   
