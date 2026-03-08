@@ -88,8 +88,11 @@
   }
 
   body {
-    @apply bg-portfolio-dark text-portfolio-light antialiased;
+    background: var(--portfolio-dark);
+    color: var(--text-primary);
+    @apply antialiased;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
