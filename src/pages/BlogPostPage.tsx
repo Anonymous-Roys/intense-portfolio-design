@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import FloatingOrb from '@/components/FloatingOrb';
 import { usePageAnalytics } from '@/hooks/use-analytics';
 import { ArrowLeft, Calendar, Tag } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 
 const BlogPostPage = () => {
   usePageAnalytics();
