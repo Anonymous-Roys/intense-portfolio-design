@@ -64,7 +64,7 @@ const Experience = () => {
             className="glass-card-strong p-6"
           >
             <div className="flex items-center gap-4 mb-6">
-              <div className="p-2 bg-portfolio-blue/10 rounded-full">
+              <div className="p-2 glass-card rounded-2xl">
                 <Briefcase className="text-portfolio-blue" size={24} />
               </div>
               <h3 className="text-xl font-semibold">Work Experience</h3>
