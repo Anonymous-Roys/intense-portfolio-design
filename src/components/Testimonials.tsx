@@ -19,6 +19,8 @@ const fallbackTestimonials: Testimonial[] = [
   { id: '4', name: 'Michael Chen', role: 'Team Lead, DevOps Inc.', avatar: '🧑‍🔧', rating: 4, text: 'David set up our CI/CD pipelines and Docker infrastructure. Very knowledgeable and always willing to explain his approach.' },
 ];
 
+const isImageUrl = (str: string) => str.startsWith('http') || str.startsWith('/');
+
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>(fallbackTestimonials);
 
@@ -56,8 +58,12 @@ const Testimonials = () => {
               <Quote size={40} className="absolute -top-1 -left-1 text-portfolio-blue/10" />
               
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-full bg-[var(--glass-bg)] border border-[var(--glass-border)] flex items-center justify-center text-2xl">
-                  {t.avatar}
+                <div className="w-12 h-12 rounded-full bg-[var(--glass-bg)] border border-[var(--glass-border)] flex items-center justify-center text-2xl overflow-hidden">
+                  {isImageUrl(t.avatar) ? (
+                    <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" />
+                  ) : (
+                    t.avatar
+                  )}
                 </div>
                 <div>
                   <h4 className="font-semibold text-[var(--text-primary)]">{t.name}</h4>
