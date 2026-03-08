@@ -35,7 +35,7 @@ const Index = () => {
       initial={{ opacity: 0 }} 
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-portfolio-dark min-h-screen text-portfolio-light overflow-x-hidden relative"
+      className="bg-[var(--portfolio-dark)] min-h-screen text-[var(--text-primary)] overflow-x-hidden relative"
     >
       {/* Global floating orbs for depth */}
       <FloatingOrb color="#4BDFFF" size="400px" top="10%" left="-5%" speed={0.3} />

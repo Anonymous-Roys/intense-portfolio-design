@@ -1,8 +1,10 @@
 
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
   
   const socialLinks = [
@@ -25,8 +27,8 @@ const Footer = () => {
             Arhin David
           </a>
           
-          <p className="text-portfolio-light/60 mb-6 text-center">
-            Fullstack Developer | Cloud Practitioner | Tech Mentor
+          <p className="text-[var(--text-muted)] mb-6 text-center">
+            {t('footer.tagline')}
           </p>
           
           <div className="flex gap-6 mb-8">
@@ -39,24 +41,23 @@ const Footer = () => {
                   target="_blank" 
                   rel="noopener noreferrer" 
                   aria-label={link.ariaLabel}
-                  className="p-2 glass-card rounded-full hover:bg-white/10 transition-colors"
+                  className="p-2 glass-card rounded-full hover:bg-[var(--glass-bg)] transition-colors"
                 >
-                  <Icon size={20} className="text-portfolio-light/80" />
+                  <Icon size={20} className="text-[var(--text-secondary)]" />
                 </a>
               );
             })}
           </div>
           
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-portfolio-light/10 to-transparent my-6"></div>
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-[var(--glass-border)] to-transparent my-6"></div>
           
-          <p className="text-sm text-portfolio-light/50 text-center">
-            © {currentYear} Arhin David Kwabena. All rights reserved.
+          <p className="text-sm text-[var(--text-muted)] text-center">
+            © {currentYear} Arhin David Kwabena. {t('footer.rights')}
           </p>
         </motion.div>
       </div>
       
-      {/* Background element */}
-      <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-portfolio-dark to-transparent"></div>
+      <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-[var(--portfolio-dark)] to-transparent"></div>
     </footer>
   );
 };

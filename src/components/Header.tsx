@@ -2,13 +2,23 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail, Sun, Moon, Globe } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTheme } from '@/hooks/use-theme';
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
+  const { t, i18n } = useTranslation();
+
+  const toggleLang = () => {
+    const newLang = i18n.language === 'en' ? 'es' : 'en';
+    i18n.changeLanguage(newLang);
+    localStorage.setItem('language', newLang);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,17 +34,16 @@ const Header = () => {
     return () => { document.body.style.overflow = ''; };
   }, [mobileMenuOpen]);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
   const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '/contact' },
+    { name: t('nav.home'), href: '/' },
+    { name: t('nav.about'), href: '/about' },
+    { name: t('nav.projects'), href: '/projects' },
+    { name: t('nav.blog'), href: '/blog' },
+    { name: t('nav.contact'), href: '/contact' },
   ];
 
   const socialLinks = [
@@ -70,7 +79,7 @@ const Header = () => {
         <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link, index) => (
             <motion.div
-              key={link.name}
+              key={link.href}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -81,7 +90,7 @@ const Header = () => {
                   "transition-colors",
                   isActive(link.href) 
                     ? "text-portfolio-blue" 
-                    : "text-portfolio-light hover:text-portfolio-blue"
+                    : "text-[var(--text-primary)] hover:text-portfolio-blue"
                 )}
               >
                 {link.name}
@@ -90,11 +99,32 @@ const Header = () => {
           ))}
           
           <motion.div 
-            className="flex items-center gap-4 ml-6"
+            className="flex items-center gap-3 ml-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
+            {/* Theme toggle */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full glass-card hover:scale-110 transition-transform"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? <Sun size={18} className="text-portfolio-blue" /> : <Moon size={18} className="text-portfolio-purple" />}
+            </button>
+
+            {/* Language toggle */}
+            <button
+              onClick={toggleLang}
+              className="p-2 rounded-full glass-card hover:scale-110 transition-transform flex items-center gap-1"
+              aria-label="Toggle language"
+            >
+              <Globe size={16} className="text-portfolio-blue" />
+              <span className="text-xs font-mono font-bold text-[var(--text-primary)]">{i18n.language.toUpperCase()}</span>
+            </button>
+
+            <div className="w-px h-5 bg-[var(--glass-border)] mx-1" />
+
             {socialLinks.map((link) => {
               const Icon = link.icon;
               return (
@@ -104,7 +134,7 @@ const Header = () => {
                   target="_blank" 
                   rel="noopener noreferrer" 
                   aria-label={link.ariaLabel}
-                  className="text-portfolio-light hover:text-portfolio-blue transition-colors"
+                  className="text-[var(--text-primary)] hover:text-portfolio-blue transition-colors"
                 >
                   <Icon size={20} />
                 </a>
@@ -114,13 +144,29 @@ const Header = () => {
         </nav>
 
         {/* Mobile menu button */}
-        <button 
-          className="md:hidden text-portfolio-light"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full glass-card"
+            aria-label="Toggle theme"
+          >
+            {theme === 'dark' ? <Sun size={16} className="text-portfolio-blue" /> : <Moon size={16} className="text-portfolio-purple" />}
+          </button>
+          <button
+            onClick={toggleLang}
+            className="p-2 rounded-full glass-card"
+            aria-label="Toggle language"
+          >
+            <span className="text-xs font-mono font-bold text-[var(--text-primary)]">{i18n.language.toUpperCase()}</span>
+          </button>
+          <button 
+            className="text-[var(--text-primary)]"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation */}
@@ -128,7 +174,7 @@ const Header = () => {
         <motion.nav 
           className="fixed inset-0 pt-24 px-6 flex flex-col md:hidden z-40"
           style={{
-            background: 'rgba(30, 30, 46, 0.85)',
+            background: 'var(--glass-header-from)',
             backdropFilter: 'blur(60px) saturate(200%)',
             WebkitBackdropFilter: 'blur(60px) saturate(200%)',
           }}
@@ -139,13 +185,13 @@ const Header = () => {
           <div className="flex flex-col gap-6">
             {navLinks.map((link) => (
               <Link 
-                key={link.name} 
+                key={link.href} 
                 to={link.href}
                 className={cn(
                   "text-xl transition-colors",
                   isActive(link.href) 
                     ? "text-portfolio-blue" 
-                    : "text-portfolio-light hover:text-portfolio-blue"
+                    : "text-[var(--text-primary)] hover:text-portfolio-blue"
                 )}
               >
                 {link.name}
@@ -163,7 +209,7 @@ const Header = () => {
                   target="_blank" 
                   rel="noopener noreferrer" 
                   aria-label={link.ariaLabel}
-                  className="text-portfolio-light hover:text-portfolio-blue transition-colors"
+                  className="text-[var(--text-primary)] hover:text-portfolio-blue transition-colors"
                 >
                   <Icon size={24} />
                 </a>
