@@ -169,7 +169,7 @@ const Contact = () => {
                         <FormControl>
                           <Input 
                             placeholder="Your name" 
-                            className="bg-white/5 border-white/10 focus:border-portfolio-blue" 
+                            className="glass-input" 
                             {...field} 
                           />
                         </FormControl>
