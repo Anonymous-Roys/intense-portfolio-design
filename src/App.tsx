@@ -10,6 +10,7 @@ import ContactPage from "./pages/ContactPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
 import NotFound from "./pages/NotFound";
+import './i18n';
 
 const queryClient = new QueryClient();
 

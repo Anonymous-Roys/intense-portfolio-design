@@ -1,11 +1,12 @@
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowDownCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Hero = () => {
+  const { t } = useTranslation();
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -33,7 +34,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Hello, my name is
+              {t('hero.greeting')}
             </motion.p>
             
             <motion.h1 
@@ -46,22 +47,21 @@ const Hero = () => {
             </motion.h1>
             
             <motion.h2 
-              className="text-2xl md:text-3xl text-portfolio-light/80 font-medium mb-6"
+              className="text-2xl md:text-3xl text-[var(--text-secondary)] font-medium mb-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <span itemProp="jobTitle">Fullstack Developer | Cloud Practitioner | Tech Mentor</span>
+              <span itemProp="jobTitle">{t('hero.title')}</span>
             </motion.h2>
             
             <motion.p 
-              className="text-lg text-portfolio-light/70 mb-8 max-w-xl"
+              className="text-lg text-[var(--text-secondary)] mb-8 max-w-xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              I create scalable web applications with modern technologies, 
-              optimize cloud infrastructure, and help others grow in tech.
+              {t('hero.description')}
             </motion.p>
             
             <motion.div 
@@ -72,7 +72,7 @@ const Hero = () => {
             >
               <Link to="/projects">
                 <Button className="btn-gradient rounded-2xl">
-                  View My Work
+                  {t('hero.viewWork')}
                 </Button>
               </Link>
               
@@ -86,12 +86,12 @@ const Hero = () => {
                   link.click();
                 }}
               >
-                Download My CV
+                {t('hero.downloadCV')}
               </Button>
               
               <Link to="/contact">
                 <Button className="glass-pill bg-transparent border-portfolio-purple/30 text-portfolio-purple hover:bg-portfolio-purple/10 transition-all px-6 py-2.5">
-                  Contact Me
+                  {t('hero.contactMe')}
                 </Button>
               </Link>
             </motion.div>
@@ -104,7 +104,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             style={{ y: imageY }}
           >
-            <div className="w-full h-full rounded-full overflow-hidden border-2 border-white/10 relative z-10" style={{ boxShadow: '0 12px 40px rgba(75, 223, 255, 0.15), inset 0 1px 0 rgba(255,255,255,0.1)' }}>
+            <div className="w-full h-full rounded-full overflow-hidden border-2 border-[var(--glass-border)] relative z-10" style={{ boxShadow: '0 12px 40px rgba(75, 223, 255, 0.15)' }}>
               <img 
                 src="/profile.jpeg" 
                 alt="Arhin David Kwabena - Fullstack Developer" 
@@ -117,7 +117,6 @@ const Hero = () => {
         </motion.div>
       </div>
       
-      {/* Parallax background elements */}
       <motion.div 
         className="absolute top-1/4 left-10 w-64 h-64 bg-portfolio-blue opacity-5 rounded-full blur-3xl"
         style={{ scale: bgScale }}
