@@ -66,7 +66,7 @@ const Hero = () => {
               
               <Button 
                 variant="outline" 
-                className="bg-transparent border border-portfolio-blue text-portfolio-blue hover:bg-portfolio-blue/10 transition-colors"
+                className="glass-pill bg-transparent border-portfolio-blue/30 text-portfolio-blue hover:bg-portfolio-blue/10 transition-all px-6 py-2.5"
                 onClick={() => {
                   const link = document.createElement('a');
                   link.href = '/Software_engineer.pdf';
