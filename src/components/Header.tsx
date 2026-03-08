@@ -35,8 +35,8 @@ const Header = () => {
   return (
     <header 
       className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-300 py-4",
-        isScrolled ? "bg-portfolio-dark/90 backdrop-blur-md shadow-md" : "bg-transparent"
+        "fixed top-0 left-0 w-full z-50 transition-all duration-500 py-4",
+        isScrolled ? "glass-header" : "bg-transparent"
       )}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -102,7 +102,12 @@ const Header = () => {
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
         <motion.nav 
-          className="fixed inset-0 bg-portfolio-dark pt-24 px-6 flex flex-col md:hidden z-40"
+          className="fixed inset-0 pt-24 px-6 flex flex-col md:hidden z-40"
+          style={{
+            background: 'rgba(30, 30, 46, 0.85)',
+            backdropFilter: 'blur(60px) saturate(200%)',
+            WebkitBackdropFilter: 'blur(60px) saturate(200%)',
+          }}
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 20 }}

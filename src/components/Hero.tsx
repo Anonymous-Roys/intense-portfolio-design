@@ -58,7 +58,7 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 1 }}
             >
               <Button 
-                className="btn-gradient"
+                className="btn-gradient rounded-2xl"
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 View My Work
@@ -66,7 +66,7 @@ const Hero = () => {
               
               <Button 
                 variant="outline" 
-                className="bg-transparent border border-portfolio-blue text-portfolio-blue hover:bg-portfolio-blue/10 transition-colors"
+                className="glass-pill bg-transparent border-portfolio-blue/30 text-portfolio-blue hover:bg-portfolio-blue/10 transition-all px-6 py-2.5"
                 onClick={() => {
                   const link = document.createElement('a');
                   link.href = '/Software_engineer.pdf';
@@ -78,7 +78,7 @@ const Hero = () => {
               </Button>
               
               <Button 
-                className="bg-transparent border border-portfolio-purple text-portfolio-purple hover:bg-portfolio-purple/10 transition-colors"
+                className="glass-pill bg-transparent border-portfolio-purple/30 text-portfolio-purple hover:bg-portfolio-purple/10 transition-all px-6 py-2.5"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Contact Me
@@ -92,7 +92,7 @@ const Hero = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-              <div className="w-full h-full rounded-full overflow-hidden border-4 border-portfolio-blue relative z-10">
+              <div className="w-full h-full rounded-full overflow-hidden border-2 border-white/10 relative z-10" style={{ boxShadow: '0 12px 40px rgba(75, 223, 255, 0.15), inset 0 1px 0 rgba(255,255,255,0.1)' }}>
               <img 
                 src="/profile.jpeg" 
                 alt="Arhin David Kwabena - Fullstack Developer" 

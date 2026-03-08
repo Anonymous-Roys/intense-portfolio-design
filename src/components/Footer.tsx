@@ -12,7 +12,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="py-10 bg-portfolio-dark/90 relative">
+    <footer className="py-10 relative glass-header">
       <div className="container mx-auto px-4">
         <motion.div 
           className="flex flex-col items-center"
@@ -39,7 +39,7 @@ const Footer = () => {
                   target="_blank" 
                   rel="noopener noreferrer" 
                   aria-label={link.ariaLabel}
-                  className="p-2 bg-white/5 rounded-full hover:bg-white/10 transition-colors"
+                  className="p-2 glass-card rounded-full hover:bg-white/10 transition-colors"
                 >
                   <Icon size={20} className="text-portfolio-light/80" />
                 </a>

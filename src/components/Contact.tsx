@@ -135,8 +135,8 @@ const Contact = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.2 + (index * 0.1) }}
                   >
-                    <div className="p-3 rounded-full bg-gradient-to-br from-portfolio-blue to-portfolio-purple group-hover:from-portfolio-purple group-hover:to-portfolio-blue transition-all duration-300">
-                      <Icon className="text-white" size={20} />
+                    <div className="p-3 rounded-2xl glass-card group-hover:shadow-[0_0_20px_rgba(75,223,255,0.2)] transition-all duration-300">
+                      <Icon className="text-portfolio-blue" size={20} />
                     </div>
                     <div>
                       <h4 className="text-sm text-portfolio-light/60">{item.label}</h4>
@@ -149,7 +149,7 @@ const Contact = () => {
           </motion.div>
           
           <motion.div 
-            className="glass-card p-6"
+            className="glass-card-strong p-6"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -169,7 +169,7 @@ const Contact = () => {
                         <FormControl>
                           <Input 
                             placeholder="Your name" 
-                            className="bg-white/5 border-white/10 focus:border-portfolio-blue" 
+                            className="glass-input" 
                             {...field} 
                           />
                         </FormControl>
@@ -187,7 +187,7 @@ const Contact = () => {
                         <FormControl>
                           <Input 
                             placeholder="Your email" 
-                            className="bg-white/5 border-white/10 focus:border-portfolio-blue" 
+                            className="glass-input" 
                             {...field} 
                           />
                         </FormControl>
@@ -206,7 +206,7 @@ const Contact = () => {
                       <FormControl>
                         <Input 
                           placeholder="Message subject" 
-                          className="bg-white/5 border-white/10 focus:border-portfolio-blue" 
+                          className="glass-input" 
                           {...field} 
                         />
                       </FormControl>
@@ -224,7 +224,7 @@ const Contact = () => {
                       <FormControl>
                         <Textarea 
                           placeholder="Your message" 
-                          className="bg-white/5 border-white/10 focus:border-portfolio-blue min-h-[120px]" 
+                          className="glass-input min-h-[120px]" 
                           {...field} 
                         />
                       </FormControl>

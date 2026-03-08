@@ -149,10 +149,10 @@ const Projects = () => {
               size="sm"
               onClick={() => setFilter(f)}
               className={cn(
-                "border border-portfolio-light/20 capitalize",
+                "capitalize rounded-full transition-all duration-300",
                 filter === f 
-                  ? "bg-gradient-to-r from-portfolio-blue to-portfolio-purple text-white border-none" 
-                  : "bg-transparent hover:bg-white/5"
+                  ? "bg-gradient-to-r from-portfolio-blue to-portfolio-purple text-white border-none shadow-[0_4px_16px_rgba(75,223,255,0.2)]" 
+                  : "glass-tag hover:bg-white/10 border-white/10"
               )}
             >
               {f}
@@ -172,7 +172,7 @@ const Projects = () => {
             {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
-                className="glass-card overflow-hidden rounded-lg card-hover"
+                className="glass-card overflow-hidden card-hover"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -192,7 +192,7 @@ const Projects = () => {
                       {project.tags.slice(0, 3).map((tag) => (
                         <span 
                           key={tag} 
-                          className="text-xs bg-white/10 backdrop-blur-sm px-2 py-1 rounded-full"
+                          className="glass-tag text-xs px-2 py-1"
                         >
                           {tag}
                         </span>

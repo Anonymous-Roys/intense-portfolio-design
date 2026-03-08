@@ -61,10 +61,10 @@ const Experience = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="glass-card p-6"
+            className="glass-card-strong p-6"
           >
             <div className="flex items-center gap-4 mb-6">
-              <div className="p-2 bg-portfolio-blue/10 rounded-full">
+              <div className="p-2 glass-card rounded-2xl">
                 <Briefcase className="text-portfolio-blue" size={24} />
               </div>
               <h3 className="text-xl font-semibold">Work Experience</h3>
@@ -92,7 +92,7 @@ const Experience = () => {
                     {item.skills.map((skill) => (
                       <span 
                         key={skill} 
-                        className="text-xs bg-portfolio-blue/10 text-portfolio-blue px-2 py-1 rounded-full"
+                        className="glass-tag text-xs px-2 py-1"
                       >
                         {skill}
                       </span>
@@ -108,10 +108,10 @@ const Experience = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="glass-card p-6"
+            className="glass-card-strong p-6"
           >
             <div className="flex items-center gap-4 mb-6">
-              <div className="p-2 bg-portfolio-purple/10 rounded-full">
+              <div className="p-2 glass-card rounded-2xl">
                 <Users className="text-portfolio-purple" size={24} />
               </div>
               <h3 className="text-xl font-semibold">Mentorship & Teaching</h3>
@@ -139,7 +139,7 @@ const Experience = () => {
                     {item.skills.map((skill) => (
                       <span 
                         key={skill} 
-                        className="text-xs bg-portfolio-purple/10 text-portfolio-purple px-2 py-1 rounded-full"
+                        className="glass-tag text-xs px-2 py-1"
                       >
                         {skill}
                       </span>
