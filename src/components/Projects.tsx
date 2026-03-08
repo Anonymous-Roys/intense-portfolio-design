@@ -7,6 +7,16 @@ import { Button } from '@/components/ui/button';
 
 const projectsData = [
   {
+    id: 0,
+    title: "EmpowerED Nexus",
+    description: "AI-powered offline-first education platform bridging Africa's digital divide with LMS, digital marketplace, and micro-cloud technology.",
+    image: "https://www.empowerednexus.com/assets/impact-tablet-learning-DWfrHaS5.webp",
+    tags: ["React.js", "AI", "Offline-First", "EdTech", "Featured"],
+    liveLink: "https://empowerednexus.com/",
+    githubRepo: "",
+    isFeatured: true
+  },
+  {
     id: 1,
     title: "Ideation Axis WebApp",
     description: "Idea collaboration platform with authentication system and seamless UI.",
