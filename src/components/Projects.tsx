@@ -172,7 +172,7 @@ const Projects = () => {
             {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
-                className="glass-card overflow-hidden rounded-lg card-hover"
+                className="glass-card overflow-hidden card-hover"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
