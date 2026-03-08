@@ -7,6 +7,8 @@ import Experience from '@/components/Experience';
 import Footer from '@/components/Footer';
 import ParallaxSection from '@/components/ParallaxSection';
 import FloatingOrb from '@/components/FloatingOrb';
+import ResumeTimeline from '@/components/ResumeTimeline';
+import ChatWidget from '@/components/ChatWidget';
 import { usePageAnalytics } from '@/hooks/use-analytics';
 
 const AboutPage = () => {
