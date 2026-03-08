@@ -192,7 +192,7 @@ const Projects = () => {
                       {project.tags.slice(0, 3).map((tag) => (
                         <span 
                           key={tag} 
-                          className="text-xs bg-white/10 backdrop-blur-sm px-2 py-1 rounded-full"
+                          className="glass-tag text-xs px-2 py-1"
                         >
                           {tag}
                         </span>

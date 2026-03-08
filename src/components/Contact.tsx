@@ -224,7 +224,7 @@ const Contact = () => {
                       <FormControl>
                         <Textarea 
                           placeholder="Your message" 
-                          className="bg-white/5 border-white/10 focus:border-portfolio-blue min-h-[120px]" 
+                          className="glass-input min-h-[120px]" 
                           {...field} 
                         />
                       </FormControl>

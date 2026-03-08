@@ -92,7 +92,7 @@ const Hero = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-              <div className="w-full h-full rounded-full overflow-hidden border-4 border-portfolio-blue relative z-10">
+              <div className="w-full h-full rounded-full overflow-hidden border-2 border-white/10 relative z-10" style={{ boxShadow: '0 12px 40px rgba(75, 223, 255, 0.15), inset 0 1px 0 rgba(255,255,255,0.1)' }}>
               <img 
                 src="/profile.jpeg" 
                 alt="Arhin David Kwabena - Fullstack Developer" 

@@ -104,7 +104,7 @@ const Skills = () => {
                       <span className="text-portfolio-light/90">{skill.name}</span>
                       <span className="text-sm text-portfolio-light/60">{skill.level}%</span>
                     </div>
-                    <div className="h-2 bg-portfolio-light/10 rounded-full overflow-hidden">
+                    <div className="h-2 bg-white/5 rounded-full overflow-hidden" style={{ backdropFilter: 'blur(10px)' }}>
                       <motion.div 
                         className="h-full bg-gradient-to-r from-portfolio-blue to-portfolio-purple"
                         initial={{ width: "0%" }}
