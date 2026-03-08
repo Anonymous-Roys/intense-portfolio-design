@@ -23,6 +23,7 @@ const fallbackTestimonials: Testimonial[] = [
 const isImageUrl = (str: string) => str.startsWith('http') || str.startsWith('/');
 
 const Testimonials = () => {
+  const { t } = useTranslation();
   const [testimonials, setTestimonials] = useState<Testimonial[]>(fallbackTestimonials);
 
   useEffect(() => {
