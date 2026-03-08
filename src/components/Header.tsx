@@ -35,8 +35,8 @@ const Header = () => {
   return (
     <header 
       className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-300 py-4",
-        isScrolled ? "bg-portfolio-dark/90 backdrop-blur-md shadow-md" : "bg-transparent"
+        "fixed top-0 left-0 w-full z-50 transition-all duration-500 py-4",
+        isScrolled ? "glass-header" : "bg-transparent"
       )}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
