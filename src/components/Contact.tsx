@@ -38,6 +38,7 @@ const Contact = () => {
     defaultValues: {
       name: '',
       email: '',
+      phone: '',
       subject: '',
       message: '',
     },
