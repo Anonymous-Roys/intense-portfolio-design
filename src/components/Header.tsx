@@ -3,10 +3,12 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,13 +24,17 @@ const Header = () => {
     return () => { document.body.style.overflow = ''; };
   }, [mobileMenuOpen]);
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   const socialLinks = [
@@ -36,6 +42,11 @@ const Header = () => {
     { icon: Linkedin, href: 'https://www.linkedin.com/in/david-arhin-09a0a026a', ariaLabel: 'LinkedIn' },
     { icon: Mail, href: 'mailto:davidarhin2005@gmail.com', ariaLabel: 'Email' }
   ];
+
+  const isActive = (href: string) => {
+    if (href === '/') return location.pathname === '/';
+    return location.pathname.startsWith(href);
+  };
 
   return (
     <header 
@@ -45,29 +56,37 @@ const Header = () => {
       )}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <motion.a 
-          href="#home" 
-          className="text-xl md:text-2xl font-bold highlight-text"
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          Arhin David
-        </motion.a>
+          <Link to="/" className="text-xl md:text-2xl font-bold highlight-text">
+            Arhin David
+          </Link>
+        </motion.div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link, index) => (
-            <motion.a 
+            <motion.div
               key={link.name}
-              href={link.href}
-              className="text-portfolio-light hover:text-portfolio-blue transition-colors"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
             >
-              {link.name}
-            </motion.a>
+              <Link
+                to={link.href}
+                className={cn(
+                  "transition-colors",
+                  isActive(link.href) 
+                    ? "text-portfolio-blue" 
+                    : "text-portfolio-light hover:text-portfolio-blue"
+                )}
+              >
+                {link.name}
+              </Link>
+            </motion.div>
           ))}
           
           <motion.div 
@@ -76,7 +95,7 @@ const Header = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
-            {socialLinks.map((link, index) => {
+            {socialLinks.map((link) => {
               const Icon = link.icon;
               return (
                 <a 
@@ -119,14 +138,18 @@ const Header = () => {
         >
           <div className="flex flex-col gap-6">
             {navLinks.map((link) => (
-              <a 
+              <Link 
                 key={link.name} 
-                href={link.href}
-                className="text-xl text-portfolio-light hover:text-portfolio-blue transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+                to={link.href}
+                className={cn(
+                  "text-xl transition-colors",
+                  isActive(link.href) 
+                    ? "text-portfolio-blue" 
+                    : "text-portfolio-light hover:text-portfolio-blue"
+                )}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </div>
           
