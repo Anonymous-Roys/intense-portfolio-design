@@ -54,6 +54,16 @@ const Contact = () => {
       });
       
       if (error) throw error;
+
+      // Send email notifications
+      supabase.functions.invoke('send-contact-email', {
+        body: {
+          name: data.name,
+          email: data.email,
+          subject: data.subject,
+          message: data.message,
+        },
+      }).catch((err) => console.error('Email sending failed:', err));
       
       toast.success('Message sent successfully! I will get back to you soon.');
       form.reset();
