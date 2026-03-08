@@ -118,7 +118,12 @@ const HomePage = () => {
         </div>
       </section>
 
+      <ParallaxSection speed={0.08} fadeIn>
+        <Testimonials />
+      </ParallaxSection>
+
       <Footer />
+      <ChatWidget />
     </motion.div>
   );
 };

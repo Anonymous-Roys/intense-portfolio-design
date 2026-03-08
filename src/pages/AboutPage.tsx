@@ -39,8 +39,13 @@ const AboutPage = () => {
         <ParallaxSection speed={0.1} fadeIn>
           <Experience />
         </ParallaxSection>
+
+        <ParallaxSection speed={0.08} fadeIn>
+          <ResumeTimeline />
+        </ParallaxSection>
       </div>
       <Footer />
+      <ChatWidget />
     </motion.div>
   );
 };
