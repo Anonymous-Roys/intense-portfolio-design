@@ -9,6 +9,8 @@ import FloatingOrb from '@/components/FloatingOrb';
 import { usePageAnalytics } from '@/hooks/use-analytics';
 import { ArrowLeft, Calendar, Tag } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import rehypeHighlight from 'rehype-highlight';
+import 'highlight.js/styles/github-dark.css';
 
 const BlogPostPage = () => {
   usePageAnalytics();
