@@ -58,7 +58,7 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 1 }}
             >
               <Button 
-                className="btn-gradient"
+                className="btn-gradient rounded-2xl"
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 View My Work
