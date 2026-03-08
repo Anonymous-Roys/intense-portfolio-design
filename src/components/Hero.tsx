@@ -70,12 +70,11 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1 }}
             >
-              <Button 
-                className="btn-gradient rounded-2xl"
-                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                View My Work
-              </Button>
+              <Link to="/projects">
+                <Button className="btn-gradient rounded-2xl">
+                  View My Work
+                </Button>
+              </Link>
               
               <Button 
                 variant="outline" 
@@ -90,12 +89,11 @@ const Hero = () => {
                 Download My CV
               </Button>
               
-              <Button 
-                className="glass-pill bg-transparent border-portfolio-purple/30 text-portfolio-purple hover:bg-portfolio-purple/10 transition-all px-6 py-2.5"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Contact Me
-              </Button>
+              <Link to="/contact">
+                <Button className="glass-pill bg-transparent border-portfolio-purple/30 text-portfolio-purple hover:bg-portfolio-purple/10 transition-all px-6 py-2.5">
+                  Contact Me
+                </Button>
+              </Link>
             </motion.div>
           </motion.div>
           
