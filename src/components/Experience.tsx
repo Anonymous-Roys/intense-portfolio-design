@@ -1,6 +1,7 @@
 
 import { motion } from 'framer-motion';
 import { Briefcase, Users } from 'lucide-react';
+import GlowOrb from './GlowOrb';
 
 const experienceItems = [
   {
@@ -61,16 +62,20 @@ const Experience = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="glass-card-strong p-6"
+            className="glass-card-strong p-6 relative overflow-hidden"
           >
-            <div className="flex items-center gap-4 mb-6">
+            {/* Glow orb */}
+            <GlowOrb color="#4BDFFF" size="200px" className="-top-12 -right-12" duration={8} delay={0} />
+            <GlowOrb color="#4BDFFF" size="120px" className="bottom-10 -left-8" duration={10} delay={2} />
+
+            <div className="flex items-center gap-4 mb-6 relative z-10">
               <div className="p-2 glass-card rounded-2xl">
                 <Briefcase className="text-portfolio-blue" size={24} />
               </div>
               <h3 className="text-xl font-semibold">Work Experience</h3>
             </div>
             
-            <div className="space-y-8">
+            <div className="space-y-8 relative z-10">
               {experienceItems.filter(item => item.type === "work").map((item, index) => (
                 <motion.div 
                   key={item.id} 
@@ -108,16 +113,20 @@ const Experience = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="glass-card-strong p-6"
+            className="glass-card-strong p-6 relative overflow-hidden"
           >
-            <div className="flex items-center gap-4 mb-6">
+            {/* Glow orb */}
+            <GlowOrb color="#9b87f5" size="200px" className="-top-12 -left-12" duration={9} delay={1} />
+            <GlowOrb color="#9b87f5" size="120px" className="bottom-10 -right-8" duration={7} delay={3} />
+
+            <div className="flex items-center gap-4 mb-6 relative z-10">
               <div className="p-2 glass-card rounded-2xl">
                 <Users className="text-portfolio-purple" size={24} />
               </div>
               <h3 className="text-xl font-semibold">Mentorship & Teaching</h3>
             </div>
             
-            <div className="space-y-8">
+            <div className="space-y-8 relative z-10">
               {experienceItems.filter(item => item.type === "teaching").map((item, index) => (
                 <motion.div 
                   key={item.id} 

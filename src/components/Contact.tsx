@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
+import GlowOrb from './GlowOrb';
 import {
   Form,
   FormControl,
@@ -108,12 +109,15 @@ const Contact = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-12">
           <motion.div 
-            className="space-y-6"
+            className="space-y-6 relative"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
+            {/* Glow orb behind contact info */}
+            <GlowOrb color="#4BDFFF" size="180px" className="top-20 -left-10" duration={8} delay={0.5} />
+
             <h3 className="text-2xl font-semibold mb-4">Get In Touch</h3>
             <p className="text-portfolio-light/70 mb-8">
               Feel free to reach out for collaborations, opportunities, or just a chat about technology. 
@@ -149,16 +153,20 @@ const Contact = () => {
           </motion.div>
           
           <motion.div 
-            className="glass-card-strong p-6"
+            className="glass-card-strong p-6 relative overflow-hidden"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h3 className="text-2xl font-semibold mb-6">Send Me a Message</h3>
+            {/* Glow orbs behind form */}
+            <GlowOrb color="#9b87f5" size="200px" className="-top-14 -right-14" duration={9} delay={0} />
+            <GlowOrb color="#4BDFFF" size="150px" className="bottom-0 -left-10" duration={7} delay={2} />
+
+            <h3 className="text-2xl font-semibold mb-6 relative z-10">Send Me a Message</h3>
             
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <FormField
                     control={form.control}
