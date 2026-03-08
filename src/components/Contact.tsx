@@ -23,6 +23,7 @@ import {
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
   email: z.string().email({ message: 'Please enter a valid email address.' }),
+  phone: z.string().optional(),
   subject: z.string().min(5, { message: 'Subject must be at least 5 characters.' }),
   message: z.string().min(10, { message: 'Message must be at least 10 characters.' }),
 });
@@ -37,6 +38,7 @@ const Contact = () => {
     defaultValues: {
       name: '',
       email: '',
+      phone: '',
       subject: '',
       message: '',
     },
@@ -49,6 +51,7 @@ const Contact = () => {
       const { error } = await supabase.from('contact_messages').insert({
         name: data.name,
         email: data.email,
+        phone: data.phone || null,
         subject: data.subject,
         message: data.message,
       });
@@ -212,6 +215,24 @@ const Contact = () => {
                     )}
                   />
                 </div>
+
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Phone <span className="text-portfolio-light/40 text-xs">(optional)</span></FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="Your phone number" 
+                          className="glass-input" 
+                          {...field} 
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 
                 <FormField
                   control={form.control}
