@@ -78,7 +78,7 @@ const Hero = () => {
               </Button>
               
               <Button 
-                className="bg-transparent border border-portfolio-purple text-portfolio-purple hover:bg-portfolio-purple/10 transition-colors"
+                className="glass-pill bg-transparent border-portfolio-purple/30 text-portfolio-purple hover:bg-portfolio-purple/10 transition-all px-6 py-2.5"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Contact Me
