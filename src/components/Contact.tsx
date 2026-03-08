@@ -215,6 +215,24 @@ const Contact = () => {
                     )}
                   />
                 </div>
+
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Phone <span className="text-portfolio-light/40 text-xs">(optional)</span></FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="Your phone number" 
+                          className="glass-input" 
+                          {...field} 
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 
                 <FormField
                   control={form.control}
