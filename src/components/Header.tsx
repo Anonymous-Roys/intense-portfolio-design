@@ -102,7 +102,7 @@ const Header = () => {
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
         <motion.nav 
-          className="fixed inset-0 bg-portfolio-dark/95 pt-24 px-6 flex flex-col md:hidden z-40"
+          className="fixed inset-0 bg-portfolio-dark pt-24 px-6 flex flex-col md:hidden z-40"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 20 }}
