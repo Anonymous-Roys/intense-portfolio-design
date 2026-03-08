@@ -149,10 +149,10 @@ const Projects = () => {
               size="sm"
               onClick={() => setFilter(f)}
               className={cn(
-                "border border-portfolio-light/20 capitalize",
+                "capitalize rounded-full transition-all duration-300",
                 filter === f 
-                  ? "bg-gradient-to-r from-portfolio-blue to-portfolio-purple text-white border-none" 
-                  : "bg-transparent hover:bg-white/5"
+                  ? "bg-gradient-to-r from-portfolio-blue to-portfolio-purple text-white border-none shadow-[0_4px_16px_rgba(75,223,255,0.2)]" 
+                  : "glass-tag hover:bg-white/10 border-white/10"
               )}
             >
               {f}
