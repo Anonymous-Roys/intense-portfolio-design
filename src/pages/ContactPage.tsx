@@ -15,7 +15,7 @@ const ContactPage = () => {
       initial={{ opacity: 0 }} 
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-portfolio-dark min-h-screen text-portfolio-light overflow-x-hidden relative"
+      className="bg-[var(--portfolio-dark)] min-h-screen text-[var(--text-primary)] overflow-x-hidden relative"
     >
       <FloatingOrb color="#9b87f5" size="400px" top="10%" right="-5%" speed={0.3} />
       <FloatingOrb color="#4BDFFF" size="300px" top="60%" left="-8%" speed={-0.2} />
