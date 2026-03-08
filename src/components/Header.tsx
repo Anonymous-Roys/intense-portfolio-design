@@ -174,7 +174,7 @@ const Header = () => {
         <motion.nav 
           className="fixed inset-0 pt-24 px-6 flex flex-col md:hidden z-40"
           style={{
-            background: var(--glass-header-from) !== undefined ? 'var(--glass-header-from)' : 'rgba(30, 30, 46, 0.85)',
+            background: 'var(--glass-header-from)',
             backdropFilter: 'blur(60px) saturate(200%)',
             WebkitBackdropFilter: 'blur(60px) saturate(200%)',
           }}
