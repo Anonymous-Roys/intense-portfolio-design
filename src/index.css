@@ -150,40 +150,27 @@
   }
 
   .glass-input {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.06) 0%,
-      rgba(255, 255, 255, 0.02) 100%
-    );
+    background: linear-gradient(135deg, var(--glass-bg) 0%, transparent 100%);
     backdrop-filter: blur(30px) saturate(160%);
     -webkit-backdrop-filter: blur(30px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
     border-radius: 0.875rem;
     transition: all 0.3s ease;
+    color: var(--text-primary);
   }
 
   .glass-input:focus {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.08) 0%,
-      rgba(75, 223, 255, 0.04) 100%
-    );
     border-color: rgba(75, 223, 255, 0.5);
-    box-shadow: 
-      0 0 24px rgba(75, 223, 255, 0.12),
-      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 24px rgba(75, 223, 255, 0.12);
   }
 
   .glass-tag {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.08) 0%,
-      rgba(255, 255, 255, 0.03) 100%
-    );
+    background: linear-gradient(135deg, var(--glass-bg) 0%, transparent 100%);
     backdrop-filter: blur(20px) saturate(160%);
     -webkit-backdrop-filter: blur(20px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--glass-border);
     border-radius: 9999px;
+  }
   }
 }
 
