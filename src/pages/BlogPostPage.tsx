@@ -9,6 +9,8 @@ import FloatingOrb from '@/components/FloatingOrb';
 import { usePageAnalytics } from '@/hooks/use-analytics';
 import { ArrowLeft, Calendar, Tag } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import rehypeHighlight from 'rehype-highlight';
+import 'highlight.js/styles/github-dark.css';
 
 const BlogPostPage = () => {
   usePageAnalytics();
@@ -82,7 +84,7 @@ const BlogPostPage = () => {
               )}
 
               <div className="glass-card-strong p-8 prose prose-invert prose-lg max-w-none prose-headings:text-portfolio-light prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4 prose-p:text-portfolio-light/85 prose-p:leading-relaxed prose-strong:text-portfolio-light prose-li:text-portfolio-light/85 prose-a:text-portfolio-blue prose-a:no-underline hover:prose-a:underline prose-ol:list-decimal prose-ul:list-disc prose-code:text-portfolio-blue prose-code:bg-white/5 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded">
-                <ReactMarkdown>{post.content}</ReactMarkdown>
+                <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{post.content}</ReactMarkdown>
               </div>
             </article>
           ) : (
