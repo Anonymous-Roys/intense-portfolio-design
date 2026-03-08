@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import { useTranslation } from 'react-i18next';
 
 interface Testimonial {
   id: string;
@@ -22,6 +23,7 @@ const fallbackTestimonials: Testimonial[] = [
 const isImageUrl = (str: string) => str.startsWith('http') || str.startsWith('/');
 
 const Testimonials = () => {
+  const { t } = useTranslation();
   const [testimonials, setTestimonials] = useState<Testimonial[]>(fallbackTestimonials);
 
   useEffect(() => {
@@ -42,7 +44,7 @@ const Testimonials = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          What People Say
+          {t('testimonials.title')}
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 max-w-4xl mx-auto">
