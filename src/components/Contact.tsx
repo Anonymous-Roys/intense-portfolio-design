@@ -135,8 +135,8 @@ const Contact = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.2 + (index * 0.1) }}
                   >
-                    <div className="p-3 rounded-full bg-gradient-to-br from-portfolio-blue to-portfolio-purple group-hover:from-portfolio-purple group-hover:to-portfolio-blue transition-all duration-300">
-                      <Icon className="text-white" size={20} />
+                    <div className="p-3 rounded-2xl glass-card group-hover:shadow-[0_0_20px_rgba(75,223,255,0.2)] transition-all duration-300">
+                      <Icon className="text-portfolio-blue" size={20} />
                     </div>
                     <div>
                       <h4 className="text-sm text-portfolio-light/60">{item.label}</h4>
