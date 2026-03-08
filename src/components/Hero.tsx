@@ -117,17 +117,6 @@ const Hero = () => {
         </motion.div>
       </div>
       
-      <motion.a 
-        href="#about"
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-portfolio-light/70 hover:text-portfolio-blue transition-colors"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 1.2, repeat: Infinity, repeatType: "reverse", repeatDelay: 0.5 }}
-        style={{ opacity: bgOpacity }}
-      >
-        <ArrowDownCircle size={32} />
-      </motion.a>
-      
       {/* Parallax background elements */}
       <motion.div 
         className="absolute top-1/4 left-10 w-64 h-64 bg-portfolio-blue opacity-5 rounded-full blur-3xl"
