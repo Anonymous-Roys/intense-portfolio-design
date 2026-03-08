@@ -59,6 +59,11 @@ const HomePage = () => {
       <Header />
       <Hero />
 
+      {/* Featured Projects Carousel */}
+      <ParallaxSection speed={0.1} fadeIn scale>
+        <FeaturedCarousel />
+      </ParallaxSection>
+
       {/* Quick navigation cards */}
       <section className="py-20 relative">
         <div className="container mx-auto px-4">
