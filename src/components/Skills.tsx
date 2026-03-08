@@ -1,10 +1,12 @@
 
 import { motion } from 'framer-motion';
+import GlowOrb from './GlowOrb';
 
 const Skills = () => {
   const skillCategories = [
     {
       name: "Programming Languages",
+      color: "#4BDFFF",
       skills: [
         { name: "JavaScript (ES6+)", level: 90 },
         { name: "TypeScript", level: 85 },
@@ -16,6 +18,7 @@ const Skills = () => {
     },
     {
       name: "Frontend",
+      color: "#9b87f5",
       skills: [
         { name: "React.js", level: 90 },
         { name: "Next.js", level: 85 },
@@ -27,6 +30,7 @@ const Skills = () => {
     },
     {
       name: "Backend",
+      color: "#39FF14",
       skills: [
         { name: "Node.js", level: 85 },
         { name: "Express.js", level: 85 },
@@ -37,6 +41,7 @@ const Skills = () => {
     },
     {
       name: "Database & ORM",
+      color: "#4BDFFF",
       skills: [
         { name: "MongoDB", level: 85 },
         { name: "MySQL", level: 80 },
@@ -46,6 +51,7 @@ const Skills = () => {
     },
     {
       name: "Cloud & DevOps",
+      color: "#9b87f5",
       skills: [
         { name: "AWS", level: 80 },
         { name: "GCP", level: 70 },
@@ -55,6 +61,7 @@ const Skills = () => {
     },
     {
       name: "Tools & Others",
+      color: "#39FF14",
       skills: [
         { name: "Git/GitHub", level: 90 },
         { name: "Figma", level: 75 },
@@ -81,17 +88,26 @@ const Skills = () => {
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.name}
-              className="glass-card p-6 h-full"
+              className="glass-card p-6 h-full relative overflow-hidden"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
             >
-              <h3 className="text-xl font-semibold mb-6 text-center text-portfolio-blue">
+              {/* Per-card glow orb */}
+              <GlowOrb 
+                color={category.color} 
+                size="140px" 
+                className="-top-8 -right-8" 
+                duration={6 + categoryIndex} 
+                delay={categoryIndex * 0.5} 
+              />
+
+              <h3 className="text-xl font-semibold mb-6 text-center text-portfolio-blue relative z-10">
                 {category.name}
               </h3>
               
-              <div className="space-y-5">
+              <div className="space-y-5 relative z-10">
                 {category.skills.map((skill, skillIndex) => (
                   <motion.div
                     key={skill.name}

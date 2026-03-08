@@ -1,6 +1,7 @@
 
 import { motion } from 'framer-motion';
 import { GraduationCap, Award, FileText } from 'lucide-react';
+import GlowOrb from './GlowOrb';
 
 const About = () => {
   const fadeInUpVariants = {
@@ -63,9 +64,14 @@ const About = () => {
             </div>
           </motion.div>
           
-          <div className="space-y-8">
+          <div className="space-y-8 relative">
+            {/* Animated glow orbs behind cards */}
+            <GlowOrb color="#4BDFFF" size="180px" className="-top-10 -right-10" duration={7} delay={0} />
+            <GlowOrb color="#9b87f5" size="160px" className="top-1/2 -left-12" duration={9} delay={1.5} />
+            <GlowOrb color="#39FF14" size="120px" className="bottom-0 right-10" duration={6} delay={3} />
+
             <motion.div 
-              className="glass-card p-6"
+              className="glass-card p-6 relative overflow-hidden"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -84,7 +90,7 @@ const About = () => {
             </motion.div>
 
             <motion.div 
-              className="glass-card p-6"
+              className="glass-card p-6 relative overflow-hidden"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -108,7 +114,7 @@ const About = () => {
             </motion.div>
 
             <motion.div 
-              className="glass-card p-6"
+              className="glass-card p-6 relative overflow-hidden"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
