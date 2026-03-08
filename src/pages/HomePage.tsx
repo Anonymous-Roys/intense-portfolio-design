@@ -6,9 +6,10 @@ import Footer from '@/components/Footer';
 import { usePageAnalytics } from '@/hooks/use-analytics';
 import FloatingOrb from '@/components/FloatingOrb';
 import GlowOrb from '@/components/GlowOrb';
+import FeaturedCarousel from '@/components/FeaturedCarousel';
+import ParallaxSection from '@/components/ParallaxSection';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Code2, Briefcase, BookOpen, MessageSquare } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const previewSections = [
   {
