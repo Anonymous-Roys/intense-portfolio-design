@@ -8,6 +8,8 @@ import FloatingOrb from '@/components/FloatingOrb';
 import GlowOrb from '@/components/GlowOrb';
 import FeaturedCarousel from '@/components/FeaturedCarousel';
 import ParallaxSection from '@/components/ParallaxSection';
+import Testimonials from '@/components/Testimonials';
+import ChatWidget from '@/components/ChatWidget';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Code2, Briefcase, BookOpen, MessageSquare } from 'lucide-react';
 
@@ -116,7 +118,12 @@ const HomePage = () => {
         </div>
       </section>
 
+      <ParallaxSection speed={0.08} fadeIn>
+        <Testimonials />
+      </ParallaxSection>
+
       <Footer />
+      <ChatWidget />
     </motion.div>
   );
 };
