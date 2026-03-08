@@ -149,7 +149,7 @@ const Contact = () => {
           </motion.div>
           
           <motion.div 
-            className="glass-card p-6"
+            className="glass-card-strong p-6"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
