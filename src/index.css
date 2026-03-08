@@ -9,33 +9,72 @@
   :root {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
-
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
-
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
-
     --primary: 210 100% 65%;
     --primary-foreground: 0 0% 98%;
-
     --secondary: 269 86% 75%;
     --secondary-foreground: 0 0% 98%;
-
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
-
     --accent: 142 100% 60%;
     --accent-foreground: 0 0% 98%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
-
     --radius: 0.5rem;
+
+    --portfolio-dark: #1E1E2E;
+    --portfolio-light: #D3D3D3;
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-shadow: rgba(0, 0, 0, 0.35);
+    --glass-inset: rgba(255, 255, 255, 0.12);
+    --glass-header-from: rgba(30, 30, 46, 0.7);
+    --glass-header-to: rgba(30, 30, 46, 0.5);
+    --scrollbar-track: #1E1E2E;
+    --text-primary: #D3D3D3;
+    --text-secondary: rgba(211, 211, 211, 0.7);
+    --text-muted: rgba(211, 211, 211, 0.5);
+  }
+
+  .light {
+    --background: 0 0% 97%;
+    --foreground: 240 10% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 10%;
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 269 86% 60%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 240 5% 90%;
+    --muted-foreground: 240 5% 40%;
+    --accent: 142 70% 40%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 5% 85%;
+    --input: 240 5% 85%;
+    --ring: 240 5% 50%;
+
+    --portfolio-dark: #f5f5f7;
+    --portfolio-light: #1a1a2e;
+    --glass-bg: rgba(0, 0, 0, 0.04);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --glass-shadow: rgba(0, 0, 0, 0.08);
+    --glass-inset: rgba(255, 255, 255, 0.6);
+    --glass-header-from: rgba(245, 245, 247, 0.8);
+    --glass-header-to: rgba(245, 245, 247, 0.6);
+    --scrollbar-track: #f5f5f7;
+    --text-primary: #1a1a2e;
+    --text-secondary: rgba(26, 26, 46, 0.7);
+    --text-muted: rgba(26, 26, 46, 0.5);
   }
 }
 
