@@ -61,7 +61,7 @@ const Experience = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="glass-card p-6"
+            className="glass-card-strong p-6"
           >
             <div className="flex items-center gap-4 mb-6">
               <div className="p-2 bg-portfolio-blue/10 rounded-full">
