@@ -3,17 +3,19 @@ import { supabase } from '@/integrations/supabase/client';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { toast } from '@/hooks/use-toast';
-import { LogOut, FileText, MessageSquare, BarChart3, Plus, Trash2, Eye, EyeOff, Mail } from 'lucide-react';
+import { LogOut, FileText, MessageSquare, BarChart3, Plus, Trash2, Eye, EyeOff, Mail, Sun, Moon, Star as StarIcon } from 'lucide-react';
 import { format } from 'date-fns';
+import { useTheme } from '@/hooks/use-theme';
+import TestimonialsManager from '@/components/admin/TestimonialsManager';
 
-type Tab = 'blog' | 'messages' | 'analytics';
+type Tab = 'blog' | 'messages' | 'analytics' | 'testimonials';
 
 const AdminPage = () => {
   const [tab, setTab] = useState<Tab>('blog');
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useTheme();
 
-  // Auth check
   useEffect(() => {
     const check = async () => {
       const { data: { user } } = await supabase.auth.getUser();
@@ -34,23 +36,27 @@ const AdminPage = () => {
 
   const tabs: { id: Tab; label: string; icon: typeof FileText }[] = [
     { id: 'blog', label: 'Blog Posts', icon: FileText },
+    { id: 'testimonials', label: 'Testimonials', icon: StarIcon },
     { id: 'messages', label: 'Messages', icon: MessageSquare },
     { id: 'analytics', label: 'Analytics', icon: BarChart3 },
   ];
 
   return (
     <div className="bg-[var(--portfolio-dark)] min-h-screen text-[var(--text-primary)]">
-      {/* Header */}
       <header className="glass-header py-4 px-6 flex items-center justify-between">
         <h1 className="text-xl font-bold highlight-text">Admin Dashboard</h1>
-        <button onClick={handleLogout} className="flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-portfolio-blue transition-colors">
-          <LogOut size={16} /> Sign Out
-        </button>
+        <div className="flex items-center gap-3">
+          <button onClick={toggleTheme} className="p-2 rounded-lg glass-card text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}>
+            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
+          <button onClick={handleLogout} className="flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-portfolio-blue transition-colors">
+            <LogOut size={16} /> Sign Out
+          </button>
+        </div>
       </header>
 
-      {/* Tabs */}
       <div className="container mx-auto px-4 py-6">
-        <div className="flex gap-2 mb-8">
+        <div className="flex gap-2 mb-8 flex-wrap">
           {tabs.map(t => {
             const Icon = t.icon;
             return (
@@ -68,6 +74,7 @@ const AdminPage = () => {
         </div>
 
         {tab === 'blog' && <BlogManager />}
+        {tab === 'testimonials' && <TestimonialsManager />}
         {tab === 'messages' && <MessagesViewer />}
         {tab === 'analytics' && <AnalyticsViewer />}
       </div>
@@ -278,7 +285,6 @@ const AnalyticsViewer = () => {
     fetch();
   }, []);
 
-  // Group by page path
   const grouped = analytics.reduce((acc, item) => {
     acc[item.page_path] = (acc[item.page_path] || 0) + 1;
     return acc;

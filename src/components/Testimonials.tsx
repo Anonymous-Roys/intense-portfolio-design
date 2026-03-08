@@ -1,38 +1,35 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
-const testimonials = [
-  {
-    name: 'Kwame Mensah',
-    role: 'Product Manager, TechStartup GH',
-    avatar: '🧑‍💼',
-    rating: 5,
-    text: 'David delivered an exceptional EdTech platform ahead of schedule. His technical depth and communication skills are outstanding.',
-  },
-  {
-    name: 'Sarah Johnson',
-    role: 'Senior Developer, CloudNine',
-    avatar: '👩‍💻',
-    rating: 5,
-    text: 'Working with David on our cloud migration was a great experience. He brought deep AWS expertise and mentored our junior devs along the way.',
-  },
-  {
-    name: 'Ama Owusu',
-    role: 'CTO, EduConnect',
-    avatar: '👩‍🏫',
-    rating: 5,
-    text: 'David built our entire learning management system from scratch. The code quality and architecture were impressive — scalable and maintainable.',
-  },
-  {
-    name: 'Michael Chen',
-    role: 'Team Lead, DevOps Inc.',
-    avatar: '🧑‍🔧',
-    rating: 4,
-    text: 'David set up our CI/CD pipelines and Docker infrastructure. Very knowledgeable and always willing to explain his approach.',
-  },
+interface Testimonial {
+  id: string;
+  name: string;
+  role: string;
+  avatar: string;
+  rating: number;
+  text: string;
+}
+
+const fallbackTestimonials: Testimonial[] = [
+  { id: '1', name: 'Kwame Mensah', role: 'Product Manager, TechStartup GH', avatar: '🧑‍💼', rating: 5, text: 'David delivered an exceptional EdTech platform ahead of schedule. His technical depth and communication skills are outstanding.' },
+  { id: '2', name: 'Sarah Johnson', role: 'Senior Developer, CloudNine', avatar: '👩‍💻', rating: 5, text: 'Working with David on our cloud migration was a great experience. He brought deep AWS expertise and mentored our junior devs along the way.' },
+  { id: '3', name: 'Ama Owusu', role: 'CTO, EduConnect', avatar: '👩‍🏫', rating: 5, text: 'David built our entire learning management system from scratch. The code quality and architecture were impressive — scalable and maintainable.' },
+  { id: '4', name: 'Michael Chen', role: 'Team Lead, DevOps Inc.', avatar: '🧑‍🔧', rating: 4, text: 'David set up our CI/CD pipelines and Docker infrastructure. Very knowledgeable and always willing to explain his approach.' },
 ];
 
 const Testimonials = () => {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(fallbackTestimonials);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const { data } = await supabase.from('testimonials').select('*').eq('visible', true).order('display_order', { ascending: true });
+      if (data && data.length > 0) setTestimonials(data);
+    };
+    fetch();
+  }, []);
+
   return (
     <section className="py-20 relative">
       <div className="container mx-auto px-4">
@@ -49,7 +46,7 @@ const Testimonials = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 max-w-4xl mx-auto">
           {testimonials.map((t, i) => (
             <motion.div
-              key={t.name}
+              key={t.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
