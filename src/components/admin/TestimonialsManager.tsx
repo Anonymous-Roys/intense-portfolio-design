@@ -3,6 +3,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
 import { motion } from 'framer-motion';
 import { Plus, Trash2, Eye, EyeOff, Pencil, Star, Upload, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const TestimonialsManager = () => {
   const [items, setItems] = useState<any[]>([]);
@@ -13,6 +14,7 @@ const TestimonialsManager = () => {
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [form, setForm] = useState({ name: '', role: '', avatar: '🧑‍💼', rating: 5, text: '', display_order: 0, visible: true });
+  const { t } = useTranslation();
 
   const fetchItems = async () => {
     const { data } = await supabase.from('testimonials').select('*').order('display_order', { ascending: true });
@@ -92,7 +94,7 @@ const TestimonialsManager = () => {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Delete this testimonial?')) return;
+    if (!confirm(t('admin.deleteTestimonial'))) return;
     await supabase.from('testimonials').delete().eq('id', id);
     toast({ title: 'Testimonial deleted' });
     fetchItems();
@@ -114,9 +116,9 @@ const TestimonialsManager = () => {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg font-semibold">Testimonials ({items.length})</h2>
+        <h2 className="text-lg font-semibold">{t('admin.testimonials')} ({items.length})</h2>
         <button onClick={() => { resetForm(); setShowForm(!showForm); }} className="flex items-center gap-2 btn-gradient px-4 py-2 rounded-lg text-sm">
-          <Plus size={16} /> New Testimonial
+          <Plus size={16} /> {t('admin.newTestimonial')}
         </button>
       </div>
 
@@ -128,7 +130,7 @@ const TestimonialsManager = () => {
               {renderAvatar(form.avatar, 'lg')}
             </div>
             <div className="flex flex-col gap-2">
-              <p className="text-sm text-[var(--text-secondary)]">Avatar</p>
+              <p className="text-sm text-[var(--text-secondary)]">{t('admin.uploadAvatar')}</p>
               <div className="flex items-center gap-2 flex-wrap">
                 <input
                   ref={fileInputRef}
@@ -142,14 +144,14 @@ const TestimonialsManager = () => {
                   disabled={uploading}
                   className="flex items-center gap-2 px-3 py-1.5 text-xs glass-card rounded-lg hover:text-portfolio-blue transition-colors disabled:opacity-50"
                 >
-                  <Upload size={14} /> {uploading ? 'Uploading...' : 'Upload Image'}
+                  <Upload size={14} /> {uploading ? t('admin.loading') : t('admin.uploadAvatar')}
                 </button>
                 {avatarPreview && (
                   <button onClick={clearAvatar} className="flex items-center gap-1 px-2 py-1.5 text-xs text-red-400 hover:bg-red-400/10 rounded-lg">
-                    <X size={14} /> Remove
+                    <X size={14} /> {t('admin.removeAvatar')}
                   </button>
                 )}
-                <span className="text-xs text-[var(--text-secondary)]">or</span>
+                <span className="text-xs text-[var(--text-secondary)]">{t('admin.orUseEmoji')}</span>
                 <input
                   value={isImageUrl(form.avatar) ? '' : form.avatar}
                   onChange={e => { setForm(f => ({ ...f, avatar: e.target.value || '🧑‍💼' })); setAvatarPreview(null); }}
@@ -161,33 +163,33 @@ const TestimonialsManager = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} placeholder="Name" className="bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)]" />
-            <input value={form.role} onChange={e => setForm(f => ({ ...f, role: e.target.value }))} placeholder="Role / Company" className="bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)]" />
+            <input value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} placeholder={t('admin.name')} className="bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)]" />
+            <input value={form.role} onChange={e => setForm(f => ({ ...f, role: e.target.value }))} placeholder={t('admin.role')} className="bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)]" />
           </div>
           <div className="flex items-center gap-2">
-            <label className="text-sm text-[var(--text-secondary)]">Rating:</label>
+            <label className="text-sm text-[var(--text-secondary)]">{t('admin.rating')}:</label>
             {[1, 2, 3, 4, 5].map(r => (
               <button key={r} onClick={() => setForm(f => ({ ...f, rating: r }))} className="p-0.5">
                 <Star size={18} className={r <= form.rating ? 'text-yellow-400 fill-yellow-400' : 'text-[var(--text-secondary)]'} />
               </button>
             ))}
           </div>
-          <textarea value={form.text} onChange={e => setForm(f => ({ ...f, text: e.target.value }))} placeholder="Testimonial text" rows={3} className="w-full bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)]" />
+          <textarea value={form.text} onChange={e => setForm(f => ({ ...f, text: e.target.value }))} placeholder={t('admin.testimonialText')} rows={3} className="w-full bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)]" />
           <div className="flex items-center gap-4">
             <label className="flex items-center gap-2 text-sm">
               <input type="checkbox" checked={form.visible} onChange={e => setForm(f => ({ ...f, visible: e.target.checked }))} className="accent-portfolio-blue" />
-              Visible
+              {t('admin.visible')}
             </label>
-            <input type="number" value={form.display_order} onChange={e => setForm(f => ({ ...f, display_order: parseInt(e.target.value) || 0 }))} className="w-20 bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)]" placeholder="Order" />
+            <input type="number" value={form.display_order} onChange={e => setForm(f => ({ ...f, display_order: parseInt(e.target.value) || 0 }))} className="w-20 bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)]" placeholder={t('admin.displayOrder')} />
             <div className="ml-auto flex gap-2">
-              <button onClick={resetForm} className="px-4 py-2 text-sm glass-card rounded-lg">Cancel</button>
-              <button onClick={handleSave} className="px-4 py-2 text-sm btn-gradient rounded-lg">{editing ? 'Update' : 'Create'}</button>
+              <button onClick={resetForm} className="px-4 py-2 text-sm glass-card rounded-lg">{t('admin.cancel')}</button>
+              <button onClick={handleSave} className="px-4 py-2 text-sm btn-gradient rounded-lg">{editing ? t('admin.update') : t('admin.create')}</button>
             </div>
           </div>
         </motion.div>
       )}
 
-      {loading ? <p>Loading...</p> : (
+      {loading ? <p>{t('admin.loading')}</p> : (
         <div className="space-y-3">
           {items.map(item => (
             <div key={item.id} className="glass-card p-4 flex items-center justify-between gap-4">
@@ -212,7 +214,7 @@ const TestimonialsManager = () => {
               </div>
             </div>
           ))}
-          {items.length === 0 && <p className="text-center text-[var(--text-secondary)] py-8">No testimonials yet.</p>}
+          {items.length === 0 && <p className="text-center text-[var(--text-secondary)] py-8">{t('admin.noTestimonials')}</p>}
         </div>
       )}
     </div>

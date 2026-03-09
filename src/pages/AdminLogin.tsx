@@ -3,6 +3,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { toast } from '@/hooks/use-toast';
+import { useTranslation } from 'react-i18next';
 import FloatingOrb from '@/components/FloatingOrb';
 
 const AdminLogin = () => {
@@ -10,6 +11,7 @@ const AdminLogin = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +24,6 @@ const AdminLogin = () => {
       return;
     }
 
-    // Check if user has admin role
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
       toast({ title: 'Error', description: 'Could not verify user', variant: 'destructive' });
@@ -54,10 +55,10 @@ const AdminLogin = () => {
       <FloatingOrb color="#9b87f5" size="250px" top="60%" right="-5%" speed={-0.2} />
 
       <div className="glass-card p-8 w-full max-w-md mx-4">
-        <h1 className="text-2xl font-bold text-center mb-6 highlight-text">Admin Login</h1>
+        <h1 className="text-2xl font-bold text-center mb-6 highlight-text">{t('admin.login')}</h1>
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
-            <label className="block text-sm text-[var(--text-secondary)] mb-1">Email</label>
+            <label className="block text-sm text-[var(--text-secondary)] mb-1">{t('admin.email')}</label>
             <input
               type="email"
               value={email}
@@ -67,7 +68,7 @@ const AdminLogin = () => {
             />
           </div>
           <div>
-            <label className="block text-sm text-[var(--text-secondary)] mb-1">Password</label>
+            <label className="block text-sm text-[var(--text-secondary)] mb-1">{t('admin.password')}</label>
             <input
               type="password"
               value={password}
@@ -81,7 +82,7 @@ const AdminLogin = () => {
             disabled={loading}
             className="w-full btn-gradient py-3 rounded-lg font-semibold disabled:opacity-50"
           >
-            {loading ? 'Signing in...' : 'Sign In'}
+            {loading ? t('admin.signingIn') : t('admin.signIn')}
           </button>
         </form>
       </div>

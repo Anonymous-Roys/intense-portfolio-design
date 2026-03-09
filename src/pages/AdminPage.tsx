@@ -6,6 +6,7 @@ import { toast } from '@/hooks/use-toast';
 import { LogOut, FileText, MessageSquare, BarChart3, Plus, Trash2, Eye, EyeOff, Mail, Sun, Moon, Star as StarIcon } from 'lucide-react';
 import { format } from 'date-fns';
 import { useTheme } from '@/hooks/use-theme';
+import { useTranslation } from 'react-i18next';
 import TestimonialsManager from '@/components/admin/TestimonialsManager';
 
 type Tab = 'blog' | 'messages' | 'analytics' | 'testimonials';
@@ -15,6 +16,7 @@ const AdminPage = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const check = async () => {
@@ -32,42 +34,42 @@ const AdminPage = () => {
     navigate('/admin/login');
   };
 
-  if (loading) return <div className="bg-[var(--portfolio-dark)] min-h-screen flex items-center justify-center text-[var(--text-primary)]">Loading...</div>;
+  if (loading) return <div className="bg-[var(--portfolio-dark)] min-h-screen flex items-center justify-center text-[var(--text-primary)]">{t('admin.loading')}</div>;
 
   const tabs: { id: Tab; label: string; icon: typeof FileText }[] = [
-    { id: 'blog', label: 'Blog Posts', icon: FileText },
-    { id: 'testimonials', label: 'Testimonials', icon: StarIcon },
-    { id: 'messages', label: 'Messages', icon: MessageSquare },
-    { id: 'analytics', label: 'Analytics', icon: BarChart3 },
+    { id: 'blog', label: t('admin.blogPosts'), icon: FileText },
+    { id: 'testimonials', label: t('admin.testimonials'), icon: StarIcon },
+    { id: 'messages', label: t('admin.messages'), icon: MessageSquare },
+    { id: 'analytics', label: t('admin.analytics'), icon: BarChart3 },
   ];
 
   return (
     <div className="bg-[var(--portfolio-dark)] min-h-screen text-[var(--text-primary)]">
       <header className="glass-header py-4 px-6 flex items-center justify-between">
-        <h1 className="text-xl font-bold highlight-text">Admin Dashboard</h1>
+        <h1 className="text-xl font-bold highlight-text">{t('admin.dashboard')}</h1>
         <div className="flex items-center gap-3">
           <button onClick={toggleTheme} className="p-2 rounded-lg glass-card text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}>
             {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
           </button>
           <button onClick={handleLogout} className="flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-portfolio-blue transition-colors">
-            <LogOut size={16} /> Sign Out
+            <LogOut size={16} /> {t('admin.signOut')}
           </button>
         </div>
       </header>
 
       <div className="container mx-auto px-4 py-6">
         <div className="flex gap-2 mb-8 flex-wrap">
-          {tabs.map(t => {
-            const Icon = t.icon;
+          {tabs.map(tab_ => {
+            const Icon = tab_.icon;
             return (
               <button
-                key={t.id}
-                onClick={() => setTab(t.id)}
+                key={tab_.id}
+                onClick={() => setTab(tab_.id)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                  tab === t.id ? 'bg-portfolio-blue text-portfolio-dark' : 'glass-card text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                  tab === tab_.id ? 'bg-portfolio-blue text-portfolio-dark' : 'glass-card text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                 }`}
               >
-                <Icon size={16} /> {t.label}
+                <Icon size={16} /> {tab_.label}
               </button>
             );
           })}
@@ -89,6 +91,7 @@ const BlogManager = () => {
   const [showForm, setShowForm] = useState(false);
   const [editing, setEditing] = useState<any>(null);
   const [form, setForm] = useState({ title: '', slug: '', excerpt: '', content: '', cover_image: '', tags: '', published: false });
+  const { t } = useTranslation();
 
   const fetchPosts = async () => {
     const { data } = await supabase.from('blog_posts').select('*').order('created_at', { ascending: false });
@@ -111,7 +114,7 @@ const BlogManager = () => {
       excerpt: form.excerpt || null,
       content: form.content,
       cover_image: form.cover_image || null,
-      tags: form.tags ? form.tags.split(',').map(t => t.trim()) : [],
+      tags: form.tags ? form.tags.split(',').map(tag => tag.trim()) : [],
       published: form.published,
     };
 
@@ -129,7 +132,7 @@ const BlogManager = () => {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Delete this post?')) return;
+    if (!confirm(t('admin.deletePost'))) return;
     await supabase.from('blog_posts').delete().eq('id', id);
     toast({ title: 'Post deleted' });
     fetchPosts();
@@ -157,36 +160,36 @@ const BlogManager = () => {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg font-semibold">Blog Posts ({posts.length})</h2>
+        <h2 className="text-lg font-semibold">{t('admin.blogPosts')} ({posts.length})</h2>
         <button onClick={() => { resetForm(); setShowForm(!showForm); }} className="flex items-center gap-2 btn-gradient px-4 py-2 rounded-lg text-sm">
-          <Plus size={16} /> New Post
+          <Plus size={16} /> {t('admin.newPost')}
         </button>
       </div>
 
       {showForm && (
         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="glass-card p-6 mb-6 space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder="Title" className="bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)]" />
-            <input value={form.slug} onChange={e => setForm(f => ({ ...f, slug: e.target.value }))} placeholder="slug-url" className="bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)]" />
-            <input value={form.cover_image} onChange={e => setForm(f => ({ ...f, cover_image: e.target.value }))} placeholder="Cover image URL" className="bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)]" />
-            <input value={form.tags} onChange={e => setForm(f => ({ ...f, tags: e.target.value }))} placeholder="Tags (comma separated)" className="bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)]" />
+            <input value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder={t('admin.title')} className="bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)]" />
+            <input value={form.slug} onChange={e => setForm(f => ({ ...f, slug: e.target.value }))} placeholder={t('admin.slug')} className="bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)]" />
+            <input value={form.cover_image} onChange={e => setForm(f => ({ ...f, cover_image: e.target.value }))} placeholder={t('admin.coverImage')} className="bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)]" />
+            <input value={form.tags} onChange={e => setForm(f => ({ ...f, tags: e.target.value }))} placeholder={t('admin.tags')} className="bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)]" />
           </div>
-          <input value={form.excerpt} onChange={e => setForm(f => ({ ...f, excerpt: e.target.value }))} placeholder="Excerpt" className="w-full bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)]" />
-          <textarea value={form.content} onChange={e => setForm(f => ({ ...f, content: e.target.value }))} placeholder="Content (Markdown)" rows={10} className="w-full bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)] font-mono" />
+          <input value={form.excerpt} onChange={e => setForm(f => ({ ...f, excerpt: e.target.value }))} placeholder={t('admin.excerpt')} className="w-full bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)]" />
+          <textarea value={form.content} onChange={e => setForm(f => ({ ...f, content: e.target.value }))} placeholder={t('admin.contentMarkdown')} rows={10} className="w-full bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)] font-mono" />
           <div className="flex items-center gap-4">
             <label className="flex items-center gap-2 text-sm">
               <input type="checkbox" checked={form.published} onChange={e => setForm(f => ({ ...f, published: e.target.checked }))} className="accent-portfolio-blue" />
-              Published
+              {t('admin.published')}
             </label>
             <div className="ml-auto flex gap-2">
-              <button onClick={resetForm} className="px-4 py-2 text-sm glass-card rounded-lg">Cancel</button>
-              <button onClick={handleSave} className="px-4 py-2 text-sm btn-gradient rounded-lg">{editing ? 'Update' : 'Create'}</button>
+              <button onClick={resetForm} className="px-4 py-2 text-sm glass-card rounded-lg">{t('admin.cancel')}</button>
+              <button onClick={handleSave} className="px-4 py-2 text-sm btn-gradient rounded-lg">{editing ? t('admin.update') : t('admin.create')}</button>
             </div>
           </div>
         </motion.div>
       )}
 
-      {loading ? <p>Loading...</p> : (
+      {loading ? <p>{t('admin.loading')}</p> : (
         <div className="space-y-3">
           {posts.map(post => (
             <div key={post.id} className="glass-card p-4 flex items-center justify-between gap-4">
@@ -203,7 +206,7 @@ const BlogManager = () => {
               </div>
             </div>
           ))}
-          {posts.length === 0 && <p className="text-center text-[var(--text-secondary)] py-8">No blog posts yet.</p>}
+          {posts.length === 0 && <p className="text-center text-[var(--text-secondary)] py-8">{t('admin.noPosts')}</p>}
         </div>
       )}
     </div>
@@ -215,14 +218,15 @@ const MessagesViewer = () => {
   const [messages, setMessages] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState<any>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
-    const fetch = async () => {
+    const fetchMessages = async () => {
       const { data } = await supabase.from('contact_messages').select('*').order('created_at', { ascending: false });
       setMessages(data || []);
       setLoading(false);
     };
-    fetch();
+    fetchMessages();
   }, []);
 
   const markRead = async (msg: any) => {
@@ -234,9 +238,11 @@ const MessagesViewer = () => {
 
   return (
     <div>
-      <h2 className="text-lg font-semibold mb-6">Messages ({messages.length}) {unread > 0 && <span className="text-portfolio-blue">• {unread} unread</span>}</h2>
+      <h2 className="text-lg font-semibold mb-6">
+        {t('admin.messages')} ({messages.length}){unread > 0 && <span className="text-portfolio-blue"> • {unread} {t('admin.unread')}</span>}
+      </h2>
 
-      {loading ? <p>Loading...</p> : (
+      {loading ? <p>{t('admin.loading')}</p> : (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="space-y-2 max-h-[600px] overflow-y-auto">
             {messages.map(msg => (
@@ -252,7 +258,7 @@ const MessagesViewer = () => {
                 <p className="text-xs text-[var(--text-secondary)] truncate">{msg.subject}</p>
               </button>
             ))}
-            {messages.length === 0 && <p className="text-center text-[var(--text-secondary)] py-8">No messages yet.</p>}
+            {messages.length === 0 && <p className="text-center text-[var(--text-secondary)] py-8">{t('admin.noMessages')}</p>}
           </div>
 
           {selected && (
@@ -275,14 +281,15 @@ const MessagesViewer = () => {
 const AnalyticsViewer = () => {
   const [analytics, setAnalytics] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
-    const fetch = async () => {
+    const fetchAnalytics = async () => {
       const { data } = await supabase.from('page_analytics').select('*').order('visited_at', { ascending: false }).limit(100);
       setAnalytics(data || []);
       setLoading(false);
     };
-    fetch();
+    fetchAnalytics();
   }, []);
 
   const grouped = analytics.reduce((acc, item) => {
@@ -294,34 +301,34 @@ const AnalyticsViewer = () => {
 
   return (
     <div>
-      <h2 className="text-lg font-semibold mb-6">Page Analytics (last 100 visits)</h2>
+      <h2 className="text-lg font-semibold mb-6">{t('admin.lastVisits')}</h2>
 
-      {loading ? <p>Loading...</p> : (
+      {loading ? <p>{t('admin.loading')}</p> : (
         <div className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
             <div className="glass-card p-4 text-center">
               <p className="text-3xl font-bold text-portfolio-blue">{analytics.length}</p>
-              <p className="text-sm text-[var(--text-secondary)]">Total Views</p>
+              <p className="text-sm text-[var(--text-secondary)]">{t('admin.totalViews')}</p>
             </div>
             <div className="glass-card p-4 text-center">
               <p className="text-3xl font-bold text-portfolio-purple">{Object.keys(grouped).length}</p>
-              <p className="text-sm text-[var(--text-secondary)]">Pages Visited</p>
+              <p className="text-sm text-[var(--text-secondary)]">{t('admin.pagesVisited')}</p>
             </div>
             <div className="glass-card p-4 text-center">
               <p className="text-3xl font-bold text-portfolio-green">{new Set(analytics.map(a => a.visitor_id)).size}</p>
-              <p className="text-sm text-[var(--text-secondary)]">Unique Visitors</p>
+              <p className="text-sm text-[var(--text-secondary)]">{t('admin.uniqueVisitors')}</p>
             </div>
           </div>
 
           <div className="glass-card p-4">
-            <h3 className="font-medium mb-3">Top Pages</h3>
+            <h3 className="font-medium mb-3">{t('admin.topPages')}</h3>
             {sorted.map(([path, count]) => (
               <div key={path} className="flex items-center justify-between py-2 border-b border-[var(--glass-border)] last:border-0">
                 <span className="text-sm font-mono">{path}</span>
                 <span className="text-sm font-bold text-portfolio-blue">{count as number}</span>
               </div>
             ))}
-            {sorted.length === 0 && <p className="text-sm text-[var(--text-secondary)]">No analytics data yet.</p>}
+            {sorted.length === 0 && <p className="text-sm text-[var(--text-secondary)]">{t('admin.noAnalytics')}</p>}
           </div>
         </div>
       )}
