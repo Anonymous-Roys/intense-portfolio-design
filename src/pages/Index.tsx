@@ -6,7 +6,7 @@ import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Skills from '@/components/Skills';
 import Projects from '@/components/Projects';
-import Experience from '@/components/Experience';
+import ResumeTimeline from '@/components/ResumeTimeline';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import ParallaxSection from '@/components/ParallaxSection';
@@ -60,7 +60,7 @@ const Index = () => {
       </ParallaxSection>
       
       <ParallaxSection speed={0.1} fadeIn>
-        <Experience />
+        <ResumeTimeline />
       </ParallaxSection>
       
       <ParallaxSection speed={0.08} fadeIn>

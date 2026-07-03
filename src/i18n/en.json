@@ -8,14 +8,14 @@
   },
   "hero": {
     "greeting": "Hello, my name is",
-    "title": "Fullstack Developer | Cloud Practitioner | Tech Mentor",
-    "description": "I create scalable web applications with modern technologies, optimize cloud infrastructure, and help others grow in tech.",
+    "title": "Software Engineer | System Design | Cloud Infrastructure",
+    "description": "Software engineer building scalable systems, designing high-throughput distributed architectures, and optimizing cloud infrastructure.",
     "viewWork": "View My Work",
     "downloadCV": "Download My CV",
     "contactMe": "Contact Me"
   },
   "footer": {
-    "tagline": "Fullstack Developer | Cloud Practitioner | Tech Mentor",
+    "tagline": "Software Engineer | System Design | Cloud Infrastructure",
     "rights": "All rights reserved."
   },
   "contact": {

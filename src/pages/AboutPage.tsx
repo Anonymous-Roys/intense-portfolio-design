@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import About from '@/components/About';
 import Skills from '@/components/Skills';
-import Experience from '@/components/Experience';
 import Footer from '@/components/Footer';
 import ParallaxSection from '@/components/ParallaxSection';
 import FloatingOrb from '@/components/FloatingOrb';
@@ -27,7 +26,7 @@ const AboutPage = () => {
       <FloatingOrb color="#4BDFFF" size="300px" top="85%" right="10%" speed={-0.35} />
 
       <Header />
-      <div className="pt-24">
+      <main className="mx-auto max-w-4xl px-6 md:px-10 pt-20 pb-20">
         <ParallaxSection speed={0.15} fadeIn scale>
           <About />
         </ParallaxSection>
@@ -36,14 +35,10 @@ const AboutPage = () => {
           <Skills />
         </ParallaxSection>
         
-        <ParallaxSection speed={0.1} fadeIn>
-          <Experience />
-        </ParallaxSection>
-
         <ParallaxSection speed={0.08} fadeIn>
           <ResumeTimeline />
         </ParallaxSection>
-      </div>
+      </main>
       <Footer />
       <ChatWidget />
     </motion.div>

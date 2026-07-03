@@ -8,14 +8,14 @@
   },
   "hero": {
     "greeting": "Hola, mi nombre es",
-    "title": "Desarrollador Fullstack | Practicante Cloud | Mentor Tech",
-    "description": "Creo aplicaciones web escalables con tecnologías modernas, optimizo infraestructura en la nube y ayudo a otros a crecer en tecnología.",
+    "title": "Ingeniero de Software | Diseño de Sistemas | Infraestructura en la Nube",
+    "description": "Ingeniero de software que construye sistemas escalables, diseña arquitecturas distribuidas de alto rendimiento y optimiza la infraestructura en la nube.",
     "viewWork": "Ver Mi Trabajo",
     "downloadCV": "Descargar Mi CV",
     "contactMe": "Contáctame"
   },
   "footer": {
-    "tagline": "Desarrollador Fullstack | Practicante Cloud | Mentor Tech",
+    "tagline": "Ingeniero de Software | Diseño de Sistemas | Infraestructura en la Nube",
     "rights": "Todos los derechos reservados."
   },
   "contact": {

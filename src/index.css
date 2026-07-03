@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
 
 @tailwind base;
@@ -7,74 +6,102 @@
 
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 210 100% 65%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 269 86% 75%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 142 100% 60%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --radius: 0.5rem;
-
-    --portfolio-dark: #1E1E2E;
-    --portfolio-light: #D3D3D3;
-    --glass-bg: rgba(255, 255, 255, 0.08);
-    --glass-border: rgba(255, 255, 255, 0.12);
-    --glass-shadow: rgba(0, 0, 0, 0.35);
-    --glass-inset: rgba(255, 255, 255, 0.12);
-    --glass-header-from: rgba(30, 30, 46, 0.7);
-    --glass-header-to: rgba(30, 30, 46, 0.5);
-    --scrollbar-track: #1E1E2E;
-    --text-primary: #D3D3D3;
-    --text-secondary: rgba(211, 211, 211, 0.7);
-    --text-muted: rgba(211, 211, 211, 0.5);
-  }
-
-  .light {
-    --background: 0 0% 97%;
+    --background: 0 0% 100%;
     --foreground: 240 10% 10%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 10%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 10%;
-    --primary: 210 100% 50%;
+    
+    /* Bronze/Gold Accent from Profile */
+    --primary: 38 45% 50%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 269 86% 60%;
+    
+    /* Secondary warm accent */
+    --secondary: 38 35% 40%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 240 5% 90%;
-    --muted-foreground: 240 5% 40%;
-    --accent: 142 70% 40%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 62.8% 50%;
+    
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 5% 45%;
+    
+    --accent: 38 45% 96%;
+    --accent-foreground: 38 45% 30%;
+    
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 240 5% 85%;
-    --input: 240 5% 85%;
-    --ring: 240 5% 50%;
+    
+    --border: 240 5% 90%;
+    --input: 240 5% 90%;
+    --ring: 38 45% 50%;
+    --radius: 0.5rem;
 
-    --portfolio-dark: #f5f5f7;
-    --portfolio-light: #1a1a2e;
-    --glass-bg: rgba(0, 0, 0, 0.04);
-    --glass-border: rgba(0, 0, 0, 0.08);
-    --glass-shadow: rgba(0, 0, 0, 0.08);
+    --portfolio-dark: #FFFFFF;
+    --portfolio-light: #F3F4F6;
+    
+    /* Subtle minimalist glassmorphism definitions */
+    --glass-bg: rgba(255, 255, 255, 0.4);
+    --glass-border: rgba(15, 23, 42, 0.08);
+    --glass-shadow: rgba(0, 0, 0, 0.04);
     --glass-inset: rgba(255, 255, 255, 0.6);
-    --glass-header-from: rgba(245, 245, 247, 0.8);
-    --glass-header-to: rgba(245, 245, 247, 0.6);
-    --scrollbar-track: #f5f5f7;
-    --text-primary: #1a1a2e;
-    --text-secondary: rgba(26, 26, 46, 0.7);
-    --text-muted: rgba(26, 26, 46, 0.5);
+    --glass-header-from: rgba(255, 255, 255, 0.5);
+    --glass-header-to: rgba(255, 255, 255, 0.35);
+    
+    --scrollbar-track: #FFFFFF;
+    --text-primary: #1F2937;
+    --text-secondary: #4B5563;
+    --text-muted: #9CA3AF;
+    
+    /* Direct custom color maps */
+    --portfolio-blue: #B89047;   /* Primary Bronze Gold */
+    --portfolio-purple: #967E51; /* Secondary Dark Gold */
+    --portfolio-green: #4B5563;  /* Neutral Steel */
+  }
+
+  .dark {
+    --background: 240 10% 4%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 6%;
+    --popover-foreground: 0 0% 98%;
+    
+    --primary: 38 45% 60%;
+    --primary-foreground: 240 10% 4%;
+    
+    --secondary: 38 35% 70%;
+    --secondary-foreground: 240 10% 4%;
+    
+    --muted: 240 5% 12%;
+    --muted-foreground: 240 5% 65%;
+    
+    --accent: 38 45% 15%;
+    --accent-foreground: 38 45% 85%;
+    
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 240 5% 15%;
+    --input: 240 5% 15%;
+    --ring: 38 45% 60%;
+
+    --portfolio-dark: #0B0B0C;
+    --portfolio-light: #1F2937;
+    
+    --glass-bg: rgba(10, 10, 12, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: rgba(0, 0, 0, 0.3);
+    --glass-inset: rgba(255, 255, 255, 0.05);
+    --glass-header-from: rgba(10, 10, 12, 0.5);
+    --glass-header-to: rgba(10, 10, 12, 0.35);
+    
+    --scrollbar-track: #0B0B0C;
+    --text-primary: #F3F4F6;
+    --text-secondary: #9CA3AF;
+    --text-muted: #6B7280;
+
+    --portfolio-blue: #C5A872;   /* Brighter Bronze Gold for contrast */
+    --portfolio-purple: #E5C185; /* Supporting contrast gold */
+    --portfolio-green: #9CA3AF;  /* Neutral Steel */
   }
 }
 
@@ -98,22 +125,43 @@
 
 @layer components {
   .btn-gradient {
-    @apply bg-gradient-to-r from-portfolio-blue to-portfolio-purple text-white font-medium px-6 py-2.5 rounded-2xl 
-           transition-all duration-300 hover:shadow-[0_0_20px_rgba(75,223,255,0.4)] hover:scale-105;
+    @apply bg-gradient-to-r from-portfolio-blue to-portfolio-purple text-white dark:text-background font-medium px-6 py-2.5 rounded-2xl 
+           transition-all duration-300 hover:shadow-[0_4px_12px_rgba(184,144,71,0.2)] hover:scale-[1.02];
   }
   
   .section-title {
-    @apply text-3xl md:text-4xl font-bold mb-6 inline-block bg-gradient-to-r from-portfolio-blue to-portfolio-purple bg-clip-text text-transparent;
+    @apply text-2xl md:text-3xl font-bold mb-6 inline-block text-foreground relative pb-2;
+  }
+  
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 2.5rem;
+    height: 2px;
+    background-color: var(--portfolio-blue);
   }
   
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-[0_0_20px_rgba(75,223,255,0.2)] hover:-translate-y-1;
+    @apply transition-all duration-300 hover:shadow-[0_4px_12px_var(--glass-shadow)] hover:-translate-y-0.5;
   }
   
   .glass-card {
-    background: linear-gradient(135deg, var(--glass-bg) 0%, transparent 50%, var(--glass-bg) 100%);
-    backdrop-filter: blur(60px) saturate(200%) brightness(1.1);
-    -webkit-backdrop-filter: blur(60px) saturate(200%) brightness(1.1);
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    border: 1px solid var(--glass-border);
+    border-radius: 1rem;
+    box-shadow: 
+      0 4px 20px var(--glass-shadow),
+      inset 0 1px 0 var(--glass-inset);
+  }
+
+  .glass-card-strong {
+    background: var(--glass-bg);
+    backdrop-filter: blur(32px) saturate(220%);
+    -webkit-backdrop-filter: blur(32px) saturate(220%);
     border: 1px solid var(--glass-border);
     border-radius: 1.25rem;
     box-shadow: 
@@ -121,53 +169,38 @@
       inset 0 1px 0 var(--glass-inset);
   }
 
-  .glass-card-strong {
-    background: linear-gradient(145deg, var(--glass-bg) 0%, transparent 40%, rgba(155, 135, 245, 0.04) 70%, rgba(75, 223, 255, 0.06) 100%);
-    backdrop-filter: blur(80px) saturate(220%) brightness(1.15);
-    -webkit-backdrop-filter: blur(80px) saturate(220%) brightness(1.15);
-    border: 1px solid var(--glass-border);
-    border-radius: 1.5rem;
-    box-shadow: 
-      0 16px 48px var(--glass-shadow),
-      inset 0 1px 0 var(--glass-inset);
-  }
-
   .glass-pill {
-    background: linear-gradient(135deg, var(--glass-bg) 0%, transparent 100%);
-    backdrop-filter: blur(40px) saturate(180%) brightness(1.1);
-    -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.1);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid var(--glass-border);
     border-radius: 9999px;
-    box-shadow: 0 4px 20px var(--glass-shadow), inset 0 1px 0 var(--glass-inset);
+    box-shadow: 0 2px 10px var(--glass-shadow), inset 0 1px 0 var(--glass-inset);
   }
 
   .glass-header {
     background: linear-gradient(180deg, var(--glass-header-from) 0%, var(--glass-header-to) 100%);
-    backdrop-filter: blur(70px) saturate(200%) brightness(1.05);
-    -webkit-backdrop-filter: blur(70px) saturate(200%) brightness(1.05);
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
     border-bottom: 1px solid var(--glass-border);
-    box-shadow: 0 8px 32px var(--glass-shadow);
+    box-shadow: 0 4px 16px var(--glass-shadow);
   }
 
   .glass-input {
-    background: linear-gradient(135deg, var(--glass-bg) 0%, transparent 100%);
-    backdrop-filter: blur(30px) saturate(160%);
-    -webkit-backdrop-filter: blur(30px) saturate(160%);
+    background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    border-radius: 0.875rem;
-    transition: all 0.3s ease;
+    border-radius: 0.75rem;
+    transition: all 0.2s ease;
     color: var(--text-primary);
   }
 
   .glass-input:focus {
-    border-color: rgba(75, 223, 255, 0.5);
-    box-shadow: 0 0 24px rgba(75, 223, 255, 0.12);
+    border-color: var(--portfolio-blue);
+    box-shadow: 0 0 0 2px rgba(184, 144, 71, 0.15);
   }
 
   .glass-tag {
-    background: linear-gradient(135deg, var(--glass-bg) 0%, transparent 100%);
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     border-radius: 9999px;
   }
@@ -175,8 +208,8 @@
 
 .animate-on-scroll {
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease-out;
+  transform: translateY(12px);
+  transition: all 0.5s ease-out;
 }
 
 .animate-on-scroll.visible {
@@ -185,15 +218,11 @@
 }
 
 .highlight-text {
-  background: linear-gradient(90deg, #4BDFFF, #9b87f5);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: text-shimmer 3s ease infinite alternate;
+  color: var(--portfolio-blue);
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -201,6 +230,6 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #4BDFFF, #9b87f5);
-  border-radius: 4px;
+  background: var(--portfolio-blue);
+  border-radius: 3px;
 }

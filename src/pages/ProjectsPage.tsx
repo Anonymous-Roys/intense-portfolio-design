@@ -22,11 +22,11 @@ const ProjectsPage = () => {
       <FloatingOrb color="#39FF14" size="250px" top="80%" left="10%" speed={0.25} />
 
       <Header />
-      <div className="pt-24">
+      <main className="mx-auto max-w-4xl px-6 md:px-10 pt-20 pb-20">
         <ParallaxSection speed={0.1} fadeIn scale>
           <Projects />
         </ParallaxSection>
-      </div>
+      </main>
       <Footer />
     </motion.div>
   );

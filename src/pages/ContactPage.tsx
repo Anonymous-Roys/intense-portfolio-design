@@ -21,11 +21,11 @@ const ContactPage = () => {
       <FloatingOrb color="#4BDFFF" size="300px" top="60%" left="-8%" speed={-0.2} />
 
       <Header />
-      <div className="pt-24">
+      <main className="mx-auto max-w-4xl px-6 md:px-10 pt-20 pb-20">
         <ParallaxSection speed={0.08} fadeIn>
           <Contact />
         </ParallaxSection>
-      </div>
+      </main>
       <Footer />
     </motion.div>
   );

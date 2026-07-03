@@ -6,7 +6,7 @@ const Skills = () => {
   const skillCategories = [
     {
       name: "Programming Languages",
-      color: "#4BDFFF",
+      color: "var(--portfolio-blue)",
       skills: [
         { name: "JavaScript (ES6+)", level: 90 },
         { name: "TypeScript", level: 85 },
@@ -18,7 +18,7 @@ const Skills = () => {
     },
     {
       name: "Frontend",
-      color: "#9b87f5",
+      color: "var(--portfolio-purple)",
       skills: [
         { name: "React.js", level: 90 },
         { name: "Next.js", level: 85 },
@@ -30,7 +30,7 @@ const Skills = () => {
     },
     {
       name: "Backend",
-      color: "#39FF14",
+      color: "var(--portfolio-green)",
       skills: [
         { name: "Node.js", level: 85 },
         { name: "Express.js", level: 85 },
@@ -41,7 +41,7 @@ const Skills = () => {
     },
     {
       name: "Database & ORM",
-      color: "#4BDFFF",
+      color: "var(--portfolio-blue)",
       skills: [
         { name: "MongoDB", level: 85 },
         { name: "MySQL", level: 80 },
@@ -51,7 +51,7 @@ const Skills = () => {
     },
     {
       name: "Cloud & DevOps",
-      color: "#9b87f5",
+      color: "var(--portfolio-purple)",
       skills: [
         { name: "AWS", level: 80 },
         { name: "GCP", level: 70 },
@@ -61,7 +61,7 @@ const Skills = () => {
     },
     {
       name: "Tools & Others",
-      color: "#39FF14",
+      color: "var(--portfolio-green)",
       skills: [
         { name: "Git/GitHub", level: 90 },
         { name: "Figma", level: 75 },

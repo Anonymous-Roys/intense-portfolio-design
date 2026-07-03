@@ -70,69 +70,52 @@ const Projects = () => {
             {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
-                className="glass-card overflow-hidden card-hover"
-                initial={{ opacity: 0, y: 20 }}
+                className="glass-card p-6 card-hover flex flex-col justify-between h-full"
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
               >
-                <div className="relative h-52 overflow-hidden">
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-portfolio-dark to-transparent opacity-80"></div>
-                  
-                  <div className="absolute bottom-0 left-0 w-full p-4">
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.slice(0, 3).map((tag) => (
-                        <span 
-                          key={tag} 
-                          className="glass-tag text-xs px-2 py-1"
+                <div>
+                  <div className="flex justify-between items-start mb-3">
+                    <h3 className="text-lg font-semibold text-[var(--text-primary)] transition-colors">{project.title}</h3>
+                    <div className="flex gap-2.5 text-[var(--text-muted)]">
+                      {project.githubRepo && (
+                        <a 
+                          href={project.githubRepo} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="hover:text-portfolio-blue transition-colors"
+                          title="Source Code"
                         >
-                          {tag}
-                        </span>
-                      ))}
-                      {project.tags.length > 3 && (
-                        <span className="text-xs bg-white/10 backdrop-blur-sm px-2 py-1 rounded-full">
-                          +{project.tags.length - 3}
-                        </span>
+                          <Github size={18} />
+                        </a>
+                      )}
+                      {project.liveLink && (
+                        <a 
+                          href={project.liveLink} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="hover:text-portfolio-blue transition-colors"
+                          title="Live Demo"
+                        >
+                          <ExternalLink size={18} />
+                        </a>
                       )}
                     </div>
                   </div>
+                  <p className="text-[var(--text-secondary)] text-sm mb-5 leading-relaxed line-clamp-3">{project.description}</p>
                 </div>
                 
-                <div className="p-6">
-                  <h3 className="text-xl font-medium mb-2">{project.title}</h3>
-                  <p className="text-portfolio-light/70 mb-6 h-14 line-clamp-2">{project.description}</p>
-                  
-                  <div className="flex gap-4">
-                    {project.liveLink && (
-                      <a 
-                        href={project.liveLink} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-portfolio-light/70 hover:text-portfolio-blue transition-colors"
-                      >
-                        <Eye size={16} />
-                        <span>Live Demo</span>
-                      </a>
-                    )}
-                    
-                    {project.githubRepo && (
-                      <a 
-                        href={project.githubRepo} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-portfolio-light/70 hover:text-portfolio-purple transition-colors"
-                      >
-                        <Github size={16} />
-                        <span>Source Code</span>
-                      </a>
-                    )}
-                  </div>
+                <div className="flex flex-wrap gap-1.5 mt-auto">
+                  {project.tags.map((tag) => (
+                    <span 
+                      key={tag} 
+                      className="glass-tag text-[10px] px-2.5 py-0.5 text-[var(--text-secondary)]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </motion.div>
             ))}

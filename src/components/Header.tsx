@@ -70,8 +70,8 @@ const Header = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <Link to="/" className="text-xl md:text-2xl font-bold highlight-text">
-            Arhin David
+          <Link to="/" className="logo-mark flex items-center gap-2 font-mono font-bold tracking-tighter" aria-label="Home">
+            <span className="bg-portfolio-blue text-white dark:text-background rounded-lg px-2.5 py-1 text-base">DA</span>
           </Link>
         </motion.div>
 
@@ -122,24 +122,6 @@ const Header = () => {
               <Globe size={16} className="text-portfolio-blue" />
               <span className="text-xs font-mono font-bold text-[var(--text-primary)]">{i18n.language.toUpperCase()}</span>
             </button>
-
-            <div className="w-px h-5 bg-[var(--glass-border)] mx-1" />
-
-            {socialLinks.map((link) => {
-              const Icon = link.icon;
-              return (
-                <a 
-                  key={link.ariaLabel} 
-                  href={link.href} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  aria-label={link.ariaLabel}
-                  className="text-[var(--text-primary)] hover:text-portfolio-blue transition-colors"
-                >
-                  <Icon size={20} />
-                </a>
-              );
-            })}
           </motion.div>
         </nav>
 

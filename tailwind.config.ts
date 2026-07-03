@@ -54,11 +54,11 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				portfolio: {
-					dark: '#1E1E2E',
-					light: '#D3D3D3',
-					blue: '#4BDFFF',
-					purple: '#9b87f5',
-					green: '#39FF14',
+					dark: 'var(--portfolio-dark)',
+					light: 'var(--portfolio-light)',
+					blue: 'var(--portfolio-blue)',
+					purple: 'var(--portfolio-purple)',
+					green: 'var(--portfolio-green)',
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',

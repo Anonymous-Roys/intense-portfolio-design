@@ -1,9 +1,9 @@
-
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -14,117 +14,138 @@ const Hero = () => {
   });
 
   const textY = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const imageY = useTransform(scrollYProgress, [0, 1], [0, 80]);
   const bgOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
   return (
-    <section ref={ref} id="home" className="min-h-screen flex flex-col justify-center relative pt-20 overflow-hidden" itemScope itemType="https://schema.org/Person">
-      <div className="container mx-auto px-4 py-10 md:py-20 relative z-10">
+    <section ref={ref} id="home" className="min-h-[85vh] flex flex-col justify-center relative pt-20 overflow-hidden" itemScope itemType="https://schema.org/Person">
+      <div className="py-10 md:py-20 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col md:flex-row items-center gap-10"
+          className="max-w-2xl text-left"
+          style={{ y: textY, opacity: bgOpacity }}
         >
-          <motion.div className="flex-1 text-center md:text-left" style={{ y: textY, opacity: bgOpacity }}>
-            <motion.p 
-              className="text-portfolio-blue mb-4 font-mono"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              {t('hero.greeting')}
-            </motion.p>
-            
-            <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-2 highlight-text"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <span itemProp="name">Arhin David Kwabena</span>
-            </motion.h1>
-            
-            <motion.h2 
-              className="text-2xl md:text-3xl text-[var(--text-secondary)] font-medium mb-6"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <span itemProp="jobTitle">{t('hero.title')}</span>
-            </motion.h2>
-            
-            <motion.p 
-              className="text-lg text-[var(--text-secondary)] mb-8 max-w-xl"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
-              {t('hero.description')}
-            </motion.p>
-            
-            <motion.div 
-              className="flex flex-wrap gap-4 justify-center md:justify-start"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1 }}
-            >
-              <Link to="/projects">
-                <Button className="btn-gradient rounded-2xl">
-                  {t('hero.viewWork')}
-                </Button>
-              </Link>
-              
-              <Button 
-                variant="outline" 
-                className="glass-pill bg-transparent border-portfolio-blue/30 text-portfolio-blue hover:bg-portfolio-blue/10 transition-all px-6 py-2.5"
-                onClick={() => {
-                  const link = document.createElement('a');
-                  link.href = '/Software_engineer.pdf';
-                  link.download = 'Arhin_David_Kwabena_CV.pdf';
-                  link.click();
-                }}
-              >
-                {t('hero.downloadCV')}
-              </Button>
-              
-              <Link to="/contact">
-                <Button className="glass-pill bg-transparent border-portfolio-purple/30 text-portfolio-purple hover:bg-portfolio-purple/10 transition-all px-6 py-2.5">
-                  {t('hero.contactMe')}
-                </Button>
-              </Link>
-            </motion.div>
-          </motion.div>
-          
-          <motion.div 
-            className="relative w-64 h-64 md:w-80 md:h-80"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            style={{ y: imageY }}
+          <motion.p 
+            className="text-portfolio-blue mb-4 font-mono text-sm"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="w-full h-full rounded-full overflow-hidden border-2 border-[var(--glass-border)] relative z-10" style={{ boxShadow: '0 12px 40px rgba(75, 223, 255, 0.15)' }}>
-              <img 
-                src="/profile.jpeg" 
-                alt="Arhin David Kwabena - Fullstack Developer" 
-                className="w-full h-full object-cover" 
-                loading="eager"
-              />
-            </div>
-            <div className="absolute top-0 left-0 w-full h-full rounded-full bg-portfolio-purple opacity-20 blur-xl -z-10"></div>
+            {t('hero.greeting')}
+          </motion.p>
+          
+          <motion.h1 
+            className="text-4xl md:text-6xl font-bold mb-4 tracking-tight text-[var(--text-primary)]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <span itemProp="name">Arhin David Kwabena</span>
+          </motion.h1>
+          
+          <motion.h2 
+            className="text-xl md:text-2xl text-[var(--text-secondary)] font-medium mb-6 leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <span itemProp="jobTitle">{t('hero.title')}</span>
+          </motion.h2>
+          
+          <motion.p 
+            className="text-base text-[var(--text-secondary)] mb-8 leading-relaxed max-w-xl"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            {t('hero.description')}
+          </motion.p>
+          
+          {/* Minimalist topic badges */}
+          <motion.div 
+            className="flex flex-wrap gap-2 mb-8 mt-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+          >
+            <span className="glass-tag text-xs font-medium px-3 py-1.5 text-[var(--text-secondary)]">System Design</span>
+            <span className="glass-tag text-xs font-medium px-3 py-1.5 text-[var(--text-secondary)]">Distributed Systems</span>
+            <span className="glass-tag text-xs font-medium px-3 py-1.5 text-[var(--text-secondary)]">Cloud Infrastructure</span>
+            <span className="glass-tag text-xs font-medium px-3 py-1.5 text-[var(--text-secondary)]">Python & Node.js</span>
+            <span className="glass-tag text-xs font-medium px-3 py-1.5 text-[var(--text-secondary)]">AI Agents</span>
+          </motion.div>
+
+          {/* Social links row matching kelvinamoaba.com */}
+          <motion.div 
+            className="flex items-center gap-5 mt-6 mb-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.0 }}
+          >
+            <a 
+              href="https://github.com/Anonymous-Roys" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-[var(--text-secondary)] hover:text-portfolio-blue transition-colors" 
+              aria-label="GitHub"
+            >
+              <Github size={20} />
+            </a>
+            <a 
+              href="https://www.linkedin.com/in/david-arhin-09a0a026a" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-[var(--text-secondary)] hover:text-portfolio-blue transition-colors" 
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={20} />
+            </a>
+            <a 
+              href="mailto:davidarhin2005@gmail.com" 
+              className="text-[var(--text-secondary)] hover:text-portfolio-blue transition-colors" 
+              aria-label="Email"
+            >
+              <Mail size={20} />
+            </a>
+          </motion.div>
+
+          <motion.div 
+            className="flex flex-wrap gap-3"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.1 }}
+          >
+            <Link to="/projects">
+              <Button className="bg-portfolio-blue hover:bg-portfolio-blue/90 text-white dark:text-background font-medium px-6 py-2.5 rounded-xl transition-all">
+                {t('hero.viewWork')}
+              </Button>
+            </Link>
+            
+            <Button 
+              variant="outline" 
+              className="border-border hover:bg-muted text-[var(--text-primary)] px-6 py-2.5 rounded-xl transition-all"
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = '/Software_engineer.pdf';
+                link.download = 'Arhin_David_Kwabena_CV.pdf';
+                link.click();
+              }}
+            >
+              {t('hero.downloadCV')}
+            </Button>
+            
+            <Link to="/contact">
+              <Button 
+                variant="ghost" 
+                className="text-portfolio-blue hover:text-portfolio-blue/80 hover:bg-portfolio-blue/5 px-6 py-2.5 rounded-xl transition-all"
+              >
+                {t('hero.contactMe')} →
+              </Button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>
-      
-      <motion.div 
-        className="absolute top-1/4 left-10 w-64 h-64 bg-portfolio-blue opacity-5 rounded-full blur-3xl"
-        style={{ scale: bgScale }}
-      />
-      <motion.div 
-        className="absolute bottom-1/4 right-10 w-80 h-80 bg-portfolio-purple opacity-5 rounded-full blur-3xl"
-        style={{ scale: bgScale }}
-      />
     </section>
   );
 };
