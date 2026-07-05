@@ -8,7 +8,8 @@ import { projectsData } from '@/data/projects';
 
 const Projects = () => {
   const [filter, setFilter] = useState('all');
-  const filters = ['all', 'featured', 'frontend', 'backend', 'fullstack', 'cloud'];
+  const primaryFilters = ['all', 'featured', 'frontend', 'backend', 'fullstack', 'mobile', 'cloud'];
+  const industryFilters = ['agritech', 'edtech', 'iot'];
   
   const getFilteredProjects = () => {
     if (filter === 'all') return projectsData;
@@ -34,28 +35,51 @@ const Projects = () => {
         </motion.h2>
         
         <motion.div 
-          className="flex flex-wrap justify-center gap-3 mt-8 mb-12"
+          className="flex flex-col items-center gap-3.5 mt-8 mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          {filters.map((f) => (
-            <Button 
-              key={f} 
-              variant="outline"
-              size="sm"
-              onClick={() => setFilter(f)}
-              className={cn(
-                "capitalize rounded-full transition-all duration-300",
-                filter === f 
-                  ? "bg-gradient-to-r from-portfolio-blue to-portfolio-purple text-white border-none shadow-[0_4px_16px_rgba(75,223,255,0.2)]" 
-                  : "glass-tag hover:bg-white/10 border-white/10"
-              )}
-            >
-              {f}
-            </Button>
-          ))}
+          {/* Tech/Platform Categories */}
+          <div className="flex flex-wrap justify-center gap-2.5">
+            {primaryFilters.map((f) => (
+              <Button 
+                key={f} 
+                variant="outline"
+                size="sm"
+                onClick={() => setFilter(f)}
+                className={cn(
+                  "capitalize rounded-full transition-all duration-300 text-xs px-4 py-1.5",
+                  filter === f 
+                    ? "bg-gradient-to-r from-portfolio-blue to-portfolio-purple text-white border-none shadow-[0_4px_16px_rgba(75,223,255,0.2)]" 
+                    : "glass-tag hover:bg-white/10 border-white/10"
+                )}
+              >
+                {f}
+              </Button>
+            ))}
+          </div>
+
+          {/* Industry Fields */}
+          <div className="flex flex-wrap justify-center gap-2.5">
+            {industryFilters.map((f) => (
+              <Button 
+                key={f} 
+                variant="outline"
+                size="sm"
+                onClick={() => setFilter(f)}
+                className={cn(
+                  "capitalize rounded-full transition-all duration-300 text-xs px-4 py-1.5",
+                  filter === f 
+                    ? "bg-gradient-to-r from-portfolio-blue to-portfolio-purple text-white border-none shadow-[0_4px_16px_rgba(75,223,255,0.2)]" 
+                    : "glass-tag hover:bg-white/10 border-white/10"
+                )}
+              >
+                {f}
+              </Button>
+            ))}
+          </div>
         </motion.div>
         
         <AnimatePresence mode="wait">
@@ -65,20 +89,35 @@ const Projects = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
           >
             {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
-                className="glass-card p-6 card-hover flex flex-col justify-between h-full"
+                className="glass-card p-6 card-hover flex flex-col justify-between h-full relative overflow-hidden group"
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.08 }}
               >
-                <div>
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className="text-lg font-semibold text-[var(--text-primary)] transition-colors">{project.title}</h3>
+                {/* Watermark Logo */}
+                {project.faviconDomain && (
+                  <div className="absolute right-[-12px] bottom-[-12px] pointer-events-none z-0 select-none transition-transform duration-500 group-hover:scale-110">
+                    <img 
+                      src={`https://www.google.com/s2/favicons?sz=128&domain=${project.faviconDomain}`} 
+                      alt="" 
+                      className="w-24 h-24 object-contain opacity-[0.06] dark:opacity-[0.04] filter grayscale"
+                      onError={(e) => {
+                        (e.target as HTMLElement).style.display = 'none';
+                      }}
+                    />
+                  </div>
+                )}
+
+                <div className="relative z-10 flex flex-col justify-between h-full w-full">
+                  <div>
+                    <div className="flex justify-between items-start mb-3 gap-4">
+                      <h3 className="text-lg font-semibold text-[var(--text-primary)] transition-colors">{project.title}</h3>
                     <div className="flex gap-2.5 text-[var(--text-muted)]">
                       {project.githubRepo && (
                         <a 
@@ -117,7 +156,8 @@ const Projects = () => {
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
+            </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>

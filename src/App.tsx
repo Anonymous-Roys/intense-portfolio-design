@@ -12,6 +12,7 @@ import BlogPostPage from "./pages/BlogPostPage";
 import AdminLogin from "./pages/AdminLogin";
 import AdminPage from "./pages/AdminPage";
 import NotFound from "./pages/NotFound";
+import RainBackground from "./components/RainBackground";
 import './i18n';
 
 const queryClient = new QueryClient();
@@ -21,6 +22,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <RainBackground />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />

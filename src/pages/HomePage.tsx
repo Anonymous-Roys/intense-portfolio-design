@@ -61,15 +61,30 @@ const HomePage = () => {
             {featuredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
-                className="glass-card p-6 card-hover flex flex-col justify-between h-full"
+                className="glass-card p-6 card-hover flex flex-col justify-between h-full relative overflow-hidden group"
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.08 }}
               >
-                <div>
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className="text-base font-semibold text-[var(--text-primary)]">{project.title}</h3>
+                {/* Watermark Logo */}
+                {project.faviconDomain && (
+                  <div className="absolute right-[-10px] bottom-[-10px] pointer-events-none z-0 select-none transition-transform duration-500 group-hover:scale-110">
+                    <img 
+                      src={`https://www.google.com/s2/favicons?sz=128&domain=${project.faviconDomain}`} 
+                      alt="" 
+                      className="w-20 h-20 object-contain opacity-[0.06] dark:opacity-[0.04] filter grayscale"
+                      onError={(e) => {
+                        (e.target as HTMLElement).style.display = 'none';
+                      }}
+                    />
+                  </div>
+                )}
+
+                <div className="relative z-10 flex flex-col justify-between h-full w-full">
+                  <div>
+                    <div className="flex justify-between items-start mb-3 gap-4">
+                      <h3 className="text-base font-semibold text-[var(--text-primary)]">{project.title}</h3>
                     <div className="flex gap-2.5 text-[var(--text-muted)]">
                       {project.githubRepo && (
                         <a 
@@ -108,7 +123,8 @@ const HomePage = () => {
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
+            </motion.div>
             ))}
           </div>
         </section>
