@@ -1,130 +1,108 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Terminal, ShieldCheck, Cpu, ArrowRight, FileText, Calendar } from 'lucide-react';
+import { useState } from 'react';
+import AdvisoryModal from './AdvisoryModal';
 
 const Hero = () => {
-  const { t } = useTranslation();
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"]
-  });
-
-  const textY = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const bgOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const [advisoryOpen, setAdvisoryOpen] = useState(false);
 
   return (
-    <section ref={ref} id="home" className="min-h-[85vh] flex flex-col justify-center relative pt-20 overflow-hidden" itemScope itemType="https://schema.org/Person">
-      <div className="py-10 md:py-20 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-2xl text-left"
-          style={{ y: textY, opacity: bgOpacity }}
-        >
-          <motion.p 
-            className="text-portfolio-blue mb-4 font-mono text-sm"
+    <>
+      <section 
+        id="home" 
+        className="relative min-h-[75vh] flex flex-col justify-center pt-24 pb-12 overflow-hidden border-b border-border/40"
+        itemScope 
+        itemType="https://schema.org/Person"
+      >
+        <div className="max-w-3xl z-10 space-y-5">
+          {/* Status Badge */}
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono glass-tag text-portfolio-blue border-portfolio-blue/30"
+          >
+            <span className="w-2 h-2 rounded-full bg-portfolio-blue animate-pulse" />
+            CLOUD ARCHITECT // SYSTEMS ENGINEER
+          </motion.div>
+
+          {/* Name & Headline */}
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-2"
           >
-            {t('hero.greeting')}
-          </motion.p>
-          
-          <motion.h1 
-            className="text-4xl md:text-6xl font-bold mb-4 tracking-tight text-[var(--text-primary)]"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <span itemProp="name">Arhin David Kwabena</span>
-          </motion.h1>
-          
-          <motion.h2 
-            className="text-xl md:text-2xl text-[var(--text-secondary)] font-medium mb-6 leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <span itemProp="jobTitle">{t('hero.title')}</span>
-          </motion.h2>
-          
+            <p className="text-xs font-mono text-portfolio-blue tracking-widest uppercase">
+              <span itemProp="name">Arhin David Kwabena</span>
+            </p>
+            <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-[var(--text-primary)] leading-tight">
+              Building Scalable Cloud Systems <br className="hidden sm:inline" />
+              <span className="highlight-text bg-clip-text">
+                & AI Infrastructure.
+              </span>
+            </h1>
+          </motion.div>
+
+          {/* Elevator Subheading */}
           <motion.p 
-            className="text-base text-[var(--text-secondary)] mb-8 leading-relaxed max-w-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-base text-[var(--text-secondary)] max-w-xl leading-relaxed"
+            itemProp="description"
           >
-            {t('hero.description')}
+            Systems engineer designing multi-tenant cloud architectures (AWS/GCP), autonomous AI workflows, and resilient offline-first platforms.
           </motion.p>
-          
-          {/* Minimalist topic badges */}
+
+          {/* Key Architectural Highlights */}
           <motion.div 
-            className="flex flex-wrap gap-2 mb-8 mt-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 border-t border-border/40 font-mono text-xs text-[var(--text-secondary)]"
           >
-            <span className="glass-tag text-xs font-medium px-3 py-1.5 text-[var(--text-secondary)]">System Design</span>
-            <span className="glass-tag text-xs font-medium px-3 py-1.5 text-[var(--text-secondary)]">Distributed Systems</span>
-            <span className="glass-tag text-xs font-medium px-3 py-1.5 text-[var(--text-secondary)]">Cloud Infrastructure</span>
-            <span className="glass-tag text-xs font-medium px-3 py-1.5 text-[var(--text-secondary)]">Python & Node.js</span>
-            <span className="glass-tag text-xs font-medium px-3 py-1.5 text-[var(--text-secondary)]">AI Agents</span>
+            <div className="flex items-center gap-2 p-2 rounded-xl glass-card">
+              <Cpu className="w-4 h-4 text-portfolio-blue shrink-0" />
+              <span>Multi-Tenant & RLS</span>
+            </div>
+            <div className="flex items-center gap-2 p-2 rounded-xl glass-card">
+              <Terminal className="w-4 h-4 text-portfolio-purple shrink-0" />
+              <span>Autonomous AI Agents</span>
+            </div>
+            <div className="flex items-center gap-2 p-2 rounded-xl glass-card">
+              <ShieldCheck className="w-4 h-4 text-portfolio-blue shrink-0" />
+              <span>AWS Cloud Track</span>
+            </div>
           </motion.div>
 
-          {/* Social links row matching kelvinamoaba.com */}
+          {/* Action CTAs */}
           <motion.div 
-            className="flex items-center gap-5 mt-6 mb-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.0 }}
-          >
-            <a 
-              href="https://github.com/Anonymous-Roys" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-[var(--text-secondary)] hover:text-portfolio-blue transition-colors" 
-              aria-label="GitHub"
-            >
-              <Github size={20} />
-            </a>
-            <a 
-              href="https://www.linkedin.com/in/david-arhin-09a0a026a" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-[var(--text-secondary)] hover:text-portfolio-blue transition-colors" 
-              aria-label="LinkedIn"
-            >
-              <Linkedin size={20} />
-            </a>
-            <a 
-              href="mailto:davidarhin2005@gmail.com" 
-              className="text-[var(--text-secondary)] hover:text-portfolio-blue transition-colors" 
-              aria-label="Email"
-            >
-              <Mail size={20} />
-            </a>
-          </motion.div>
-
-          <motion.div 
-            className="flex flex-wrap gap-3"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="flex flex-wrap items-center gap-3 pt-2"
           >
-            <Link to="/projects">
-              <Button className="bg-portfolio-blue hover:bg-portfolio-blue/90 text-white dark:text-background font-medium px-6 py-2.5 rounded-xl transition-all">
-                {t('hero.viewWork')}
+            <a href="#projects">
+              <Button className="btn-gradient flex items-center gap-2 text-xs py-2 px-5">
+                Explore Blueprints
+                <ArrowRight className="w-3.5 h-3.5" />
               </Button>
-            </Link>
-            
+            </a>
+
+            <Button
+              variant="outline"
+              onClick={() => setAdvisoryOpen(true)}
+              className="glass-card hover:bg-portfolio-blue/10 text-[var(--text-primary)] text-xs border-border/80 px-5 py-2 rounded-xl transition-all flex items-center gap-2"
+            >
+              <Calendar className="w-3.5 h-3.5 text-portfolio-blue" />
+              Book Advisory
+            </Button>
+
             <Button 
-              variant="outline" 
-              className="border-border hover:bg-muted text-[var(--text-primary)] px-6 py-2.5 rounded-xl transition-all"
+              variant="ghost" 
+              className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] text-xs font-mono flex items-center gap-1.5 px-3"
               onClick={() => {
                 const link = document.createElement('a');
                 link.href = '/Software_engineer.pdf';
@@ -132,21 +110,15 @@ const Hero = () => {
                 link.click();
               }}
             >
-              {t('hero.downloadCV')}
+              <FileText className="w-3.5 h-3.5" />
+              CV
             </Button>
-            
-            <Link to="/contact">
-              <Button 
-                variant="ghost" 
-                className="text-portfolio-blue hover:text-portfolio-blue/80 hover:bg-portfolio-blue/5 px-6 py-2.5 rounded-xl transition-all"
-              >
-                {t('hero.contactMe')} →
-              </Button>
-            </Link>
           </motion.div>
-        </motion.div>
-      </div>
-    </section>
+        </div>
+      </section>
+
+      <AdvisoryModal open={advisoryOpen} onClose={() => setAdvisoryOpen(false)} />
+    </>
   );
 };
 

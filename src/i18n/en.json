@@ -7,12 +7,13 @@
     "contact": "Contact"
   },
   "hero": {
-    "greeting": "Hello, my name is",
-    "title": "Software Engineer | System Design | Cloud Infrastructure",
-    "description": "Software engineer building scalable systems, designing high-throughput distributed architectures, and optimizing cloud infrastructure.",
-    "viewWork": "View My Work",
-    "downloadCV": "Download My CV",
-    "contactMe": "Contact Me"
+    "badge": "CLOUD ARCHITECT // SYSTEMS ENGINEER",
+    "greeting": "Arhin David Kwabena",
+    "title": "Building Scalable Cloud Systems & AI Infrastructure.",
+    "description": "Systems engineer designing multi-tenant cloud architectures (AWS/GCP), autonomous AI workflows, and resilient offline-first platforms.",
+    "viewWork": "Explore System Blueprints",
+    "downloadCV": "Download Technical CV",
+    "contactMe": "Book Architecture Advisory"
   },
   "footer": {
     "tagline": "Software Engineer | System Design | Cloud Infrastructure",

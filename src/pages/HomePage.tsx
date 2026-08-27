@@ -1,16 +1,19 @@
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
-import { projectsData } from '@/data/projects';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import CredibilityStrip from '@/components/CredibilityStrip';
+import TechnicalSpecs from '@/components/TechnicalSpecs';
+import Projects from '@/components/Projects';
+import AdvisorySection from '@/components/AdvisorySection';
+import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
+import ChatWidget from '@/components/ChatWidget';
 import { usePageAnalytics } from '@/hooks/use-analytics';
 import FloatingOrb from '@/components/FloatingOrb';
-import Testimonials from '@/components/Testimonials';
-import ChatWidget from '@/components/ChatWidget';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ExternalLink, Github } from 'lucide-react';
+import { ArrowRight, BookOpen } from 'lucide-react';
 
 const HomePage = () => {
   usePageAnalytics();
@@ -30,8 +33,6 @@ const HomePage = () => {
     },
   });
 
-  const featuredProjects = projectsData.filter(p => p.isFeatured).slice(0, 4);
-
   return (
     <motion.div 
       initial={{ opacity: 0 }} 
@@ -45,98 +46,30 @@ const HomePage = () => {
       <Header />
       
       <main className="mx-auto max-w-4xl px-6 md:px-10 pt-20 pb-20">
+        {/* Architect Hero */}
         <Hero />
 
-        {/* Featured Projects Section */}
-        <section className="py-12 mt-8">
-          <div className="flex items-center gap-4 mb-8">
-            <span className="text-xs font-mono tracking-wider uppercase text-[var(--text-muted)]">Featured Projects</span>
-            <span className="h-px flex-1 bg-border"></span>
-            <Link to="/projects" className="text-xs text-portfolio-blue hover:underline inline-flex items-center gap-1">
-              All projects <ArrowRight size={12} />
-            </Link>
-          </div>
+        {/* Credibility Strip */}
+        <CredibilityStrip />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {featuredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                className="glass-card p-6 card-hover flex flex-col justify-between h-full relative overflow-hidden group"
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
-              >
-                {/* Watermark Logo */}
-                {project.faviconDomain && (
-                  <div className="absolute right-[-10px] bottom-[-10px] pointer-events-none z-0 select-none transition-transform duration-500 group-hover:scale-110">
-                    <img 
-                      src={`https://www.google.com/s2/favicons?sz=128&domain=${project.faviconDomain}`} 
-                      alt="" 
-                      className="w-20 h-20 object-contain opacity-[0.06] dark:opacity-[0.04] filter grayscale"
-                      onError={(e) => {
-                        (e.target as HTMLElement).style.display = 'none';
-                      }}
-                    />
-                  </div>
-                )}
+        {/* Featured Projects with Architecture Whitepapers (Top 2) */}
+        <Projects limit={2} />
 
-                <div className="relative z-10 flex flex-col justify-between h-full w-full">
-                  <div>
-                    <div className="flex justify-between items-start mb-3 gap-4">
-                      <h3 className="text-base font-semibold text-[var(--text-primary)]">{project.title}</h3>
-                    <div className="flex gap-2.5 text-[var(--text-muted)]">
-                      {project.githubRepo && (
-                        <a 
-                          href={project.githubRepo} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="hover:text-portfolio-blue transition-colors"
-                          title="Source Code"
-                        >
-                          <Github size={16} />
-                        </a>
-                      )}
-                      {project.liveLink && (
-                        <a 
-                          href={project.liveLink} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="hover:text-portfolio-blue transition-colors"
-                          title="Live Demo"
-                        >
-                          <ExternalLink size={16} />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                  <p className="text-[var(--text-secondary)] text-xs mb-5 leading-relaxed line-clamp-3">{project.description}</p>
-                </div>
-                
-                <div className="flex flex-wrap gap-1 mt-auto">
-                  {project.tags.slice(0, 3).map((tag) => (
-                    <span 
-                      key={tag} 
-                      className="glass-tag text-[9px] px-2.5 py-0.5 text-[var(--text-secondary)]"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-            ))}
-          </div>
-        </section>
+        {/* Technical Specs & Architectural Capabilities */}
+        <TechnicalSpecs />
 
-        {/* Writing Section */}
+        {/* Technical Writing & Benchmarks (if posts exist) */}
         {posts && posts.length > 0 && (
-          <section className="py-12">
-            <div className="flex items-center gap-4 mb-8">
-              <span className="text-xs font-mono tracking-wider uppercase text-[var(--text-muted)]">Writing</span>
-              <span className="h-px flex-1 bg-border"></span>
-              <Link to="/blog" className="text-xs text-portfolio-blue hover:underline inline-flex items-center gap-1">
-                All writing <ArrowRight size={12} />
+          <section className="py-16">
+            <div className="flex items-center justify-between gap-4 mb-8 pb-3 border-b border-border/40">
+              <div className="flex items-center gap-2">
+                <BookOpen className="text-portfolio-blue" size={18} />
+                <h3 className="text-xs font-mono tracking-wider uppercase text-portfolio-blue font-bold">
+                  Technical Writings & System Benchmarks
+                </h3>
+              </div>
+              <Link to="/blog" className="text-xs font-mono text-portfolio-blue hover:underline inline-flex items-center gap-1">
+                View All Writings <ArrowRight size={12} />
               </Link>
             </div>
 
@@ -145,13 +78,16 @@ const HomePage = () => {
                 <Link 
                   key={post.id} 
                   to={`/blog/${post.slug}`} 
-                  className="group flex flex-col sm:flex-row justify-between items-start sm:items-baseline py-3 border-b border-border/40 hover:border-portfolio-blue/40 transition-colors gap-1 sm:gap-4"
+                  className="group flex flex-col sm:flex-row justify-between items-start sm:items-baseline p-4 rounded-xl glass-card hover:border-portfolio-blue/40 transition-all gap-2"
                 >
-                  <span className="text-xs text-[var(--text-muted)] font-mono min-w-[100px]">
+                  <span className="text-xs text-[var(--text-muted)] font-mono">
                     {new Date(post.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                   </span>
-                  <span className="text-sm font-medium text-[var(--text-primary)] group-hover:text-portfolio-blue transition-colors flex-1">
+                  <span className="text-sm font-semibold text-[var(--text-primary)] group-hover:text-portfolio-blue transition-colors flex-1 sm:ml-4">
                     {post.title}
+                  </span>
+                  <span className="text-xs font-mono text-portfolio-blue group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                    Read Blueprint <ArrowRight size={12} />
                   </span>
                 </Link>
               ))}
@@ -159,14 +95,13 @@ const HomePage = () => {
           </section>
         )}
 
-        {/* Testimonials Section */}
-        <section className="py-12">
-          <div className="flex items-center gap-4 mb-8">
-            <span className="text-xs font-mono tracking-wider uppercase text-[var(--text-muted)]">Testimonials</span>
-            <span className="h-px flex-1 bg-border"></span>
-          </div>
+        {/* Testimonials */}
+        <section className="py-16">
           <Testimonials />
         </section>
+
+        {/* High-Ticket Advisory Call to Action */}
+        <AdvisorySection />
       </main>
 
       <Footer />
