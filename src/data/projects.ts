@@ -18,6 +18,9 @@ export interface Project {
   faviconDomain?: string;
   isWebApp?: boolean;
   architectureWhitepaper?: ArchitectureWhitepaper;
+  /** When set, the project card links to a dedicated in-portfolio case study route instead of the quick-view modal. */
+  detailPath?: string;
+  client?: string;
 }
 
 export const projectsData: Project[] = [
@@ -263,6 +266,39 @@ export const projectsData: Project[] = [
         { category: "Real-Time Comms", technologies: ["WebSockets / Socket.io", "Event Emitter"] },
         { category: "Frontend", technologies: ["React.js", "Framer Motion", "Tailwind CSS"] },
         { category: "Persistence", technologies: ["MySQL", "Node.js Express API"] }
+      ]
+    }
+  },
+  {
+    id: 9,
+    title: "MPTI Chatbase - AI Admissions Assistant for Macpartners Training Institute",
+    description: "AI chatbot plugin built for Macpartners Training Institute (MPTI): a WordPress widget backed by a Python NLP microservice and a live-synced knowledge base, fronted by \"Joe\" — a warm, concise admissions assistant that answers course, fee, and application questions around the clock.",
+    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80",
+    tags: ["WordPress", "Python", "FastAPI", "NLP", "AI Chatbot", "EdTech", "Client Work", "Featured"],
+    liveLink: "https://www.mptigh.com/",
+    githubRepo: "",
+    isFeatured: true,
+    faviconDomain: "mptigh.com",
+    isWebApp: true,
+    detailPath: "/projects/mpti-chatbase",
+    client: "Macpartners Training Institute (MPTI)",
+    architectureWhitepaper: {
+      problemAndScale: "Macpartners Training Institute needed 24/7 first-line admissions support on mptigh.com — answering course, tuition, and application questions from prospective students around the clock without adding front-desk headcount, and without it feeling like a generic, scripted bot.",
+      architectureBlueprint: "WordPress-Native AI Layer: a custom WordPress plugin renders a branded chat widget on mptigh.com that calls a dedicated Python (FastAPI/Hypercorn) microservice deployed on Render. The service periodically scrapes and indexes the live site into a lightweight knowledge base, runs intent classification and sentiment analysis on incoming messages, and forwards grounded prompts to a Groq-hosted Llama 3.1 model to draft the final, human-toned reply.",
+      engineeringTradeoffs: [
+        "Split the AI brain into a standalone Python microservice instead of PHP-only logic, so the NLP/LLM layer and the WordPress admin can be deployed, scaled, and redeployed independently.",
+        "Used a scheduled content scraper with a 30-minute in-memory refresh instead of a full vector database, keeping hosting cost near-zero while the assistant's knowledge stays current with the live site.",
+        "Added per-IP rate limiting plus a rule-based fallback responder so the widget degrades to instant, still-useful answers if the LLM call fails or a quota is hit, rather than surfacing an error to a prospective student."
+      ],
+      impactMetrics: [
+        "Gives MPTI a 24/7 admissions responder without extra front-desk staff",
+        "Knowledge base auto-refreshes from the live site every 30 minutes with zero manual retraining",
+        "Rate-limited, cached architecture runs comfortably on a free-tier Render deployment"
+      ],
+      techStackBreakdown: [
+        { category: "WordPress Plugin", technologies: ["PHP", "WordPress REST API", "Custom Admin Dashboard"] },
+        { category: "AI Microservice", technologies: ["Python", "FastAPI", "Hypercorn", "Groq Llama 3.1 8B Instant"] },
+        { category: "NLP & Ops", technologies: ["Intent Classification", "Sentiment Analysis", "Rate Limiting", "Render"] }
       ]
     }
   },

@@ -266,7 +266,16 @@ const Projects = ({ limit }: ProjectsProps) => {
 
                       {/* Bottom Action Bar */}
                       <div className="flex items-center gap-2 pt-1 z-40">
-                        {project.architectureWhitepaper && (
+                        {project.detailPath ? (
+                          <Link
+                            to={project.detailPath}
+                            onClick={(e) => e.stopPropagation()}
+                            className="btn-gradient flex-1 py-1.5 text-xs flex items-center justify-center gap-1.5"
+                          >
+                            <Cpu size={14} />
+                            View Case Study
+                          </Link>
+                        ) : project.architectureWhitepaper && (
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
@@ -347,8 +356,20 @@ const Projects = ({ limit }: ProjectsProps) => {
                       ))}
                     </div>
 
-                    {/* Architecture Whitepaper CTA Button */}
-                    {project.architectureWhitepaper && (
+                    {/* Architecture Whitepaper / Case Study CTA */}
+                    {project.detailPath ? (
+                      <Link
+                        to={project.detailPath}
+                        onClick={(e) => e.stopPropagation()}
+                        className="w-full py-2.5 px-4 rounded-xl glass-card hover:bg-portfolio-blue/10 text-portfolio-blue text-xs font-mono font-semibold transition-all flex items-center justify-between group/btn"
+                      >
+                        <span className="flex items-center gap-2">
+                          <Cpu size={14} className="text-portfolio-blue" />
+                          Case Study & Live Demo
+                        </span>
+                        <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
+                      </Link>
+                    ) : project.architectureWhitepaper && (
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
